@@ -36,7 +36,6 @@ public class PaisCRUD implements DAO<Pais, Long> {
 
         Query consulta = sessao.createQuery("from Pais where id = :id");
         consulta.setLong("id", id);
-        consulta.executeUpdate();
 
         resultado = (Pais) consulta.uniqueResult();
         transacao.commit();
