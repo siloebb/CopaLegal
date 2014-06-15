@@ -13,5 +13,6 @@
         
         <!--entidades-->
         <mapping class="model.Pais" />
+        <mapping class="model.Copa" />
     </session-factory>
 </hibernate-configuration>
