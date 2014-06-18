@@ -14,5 +14,6 @@
         <!--entidades-->
         <mapping class="model.Pais" />
         <mapping class="model.Copa" />
+        <mapping class="model.Tecnico"/>
     </session-factory>
 </hibernate-configuration>
