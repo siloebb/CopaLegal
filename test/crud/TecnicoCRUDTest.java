@@ -7,6 +7,7 @@
 package crud;
 
 import java.util.List;
+import model.Pais;
 import model.Tecnico;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -51,11 +52,12 @@ public class TecnicoCRUDTest {
         tecnico1.setNome("Felipão");
         tecnico1.setDataNascimento("22/05/1956");
         
-        TecnicoCRUD instance = new TecnicoCRUD();
-        instance.create(tecnico1);
-
-        //assertEquals();
-        fail("The test case is a prototype.");
+        TecnicoCRUD tec = new TecnicoCRUD();
+        int valorAntigo =  tec.getList().size();
+        
+        tec.create(tecnico1);   
+        
+        assertEquals(valorAntigo + 1, tec.getList().size(),0);   
     }
 
     /**
@@ -64,13 +66,19 @@ public class TecnicoCRUDTest {
     @Test
     public void testReady() {
         System.out.println("ready");
-        String id = "";
-        TecnicoCRUD instance = new TecnicoCRUD();
-        Tecnico expResult = null;
-        Tecnico result = instance.ready(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        Tecnico tecnico1 = new Tecnico();
+        tecnico1.setNome("Felipão");
+        tecnico1.setDataNascimento("22/05/1956");
+        
+         TecnicoCRUD tec = new TecnicoCRUD();
+         tec.create(tecnico1);
+         
+        Tecnico novo = tec.ready(tecnico1.getNome());
+        assertEquals(tecnico1, novo);
+        
+        
+        
     }
 
     /**
@@ -79,12 +87,9 @@ public class TecnicoCRUDTest {
     @Test
     public void testGetList() {
         System.out.println("getList");
-        TecnicoCRUD instance = new TecnicoCRUD();
-        List<Tecnico> expResult = null;
-        List<Tecnico> result = instance.getList();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        TecnicoCRUD tec = new TecnicoCRUD();
+        
+        assertNotNull(tec.getList());
     }
 
     /**
@@ -93,17 +98,29 @@ public class TecnicoCRUDTest {
     @Test
     public void testUpdate() {
         System.out.println("update");
-        Tecnico o = null;
-        TecnicoCRUD instance = new TecnicoCRUD();
-        instance.update(o);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Tecnico tecnico1 = new Tecnico();
+        tecnico1.setNome("Felipão");
+        tecnico1.setDataNascimento("22/05/1956");
+        
+        TecnicoCRUD tec = new TecnicoCRUD();
+        
+        
+        tec.create(tecnico1);
+        Tecnico ready = tec.ready(tecnico1.getNome());
+        
+        ready.setDataNascimento("30/05/1978");        
+        
+        tec.update(ready);
+        
+        ready = tec.ready(tecnico1.getNome());
+        assertEquals("30/05/1978", ready.getDataNascimento());
+        
     }
 
     /**
      * Test of delete method, of class TecnicoCRUD.
      */
-    @Test
+    /*@Test
     public void testDelete() {
         System.out.println("delete");
         Tecnico o = null;
@@ -116,13 +133,13 @@ public class TecnicoCRUDTest {
     /**
      * Test of deleteAll method, of class TecnicoCRUD.
      */
-    @Test
+   /* @Test
     public void testDeleteAll() {
         System.out.println("deleteAll");
         TecnicoCRUD instance = new TecnicoCRUD();
         instance.deleteAll();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
     
 }
