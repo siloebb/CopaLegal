@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
 
 /**
  *
@@ -18,11 +17,20 @@ import javax.persistence.Id;
  */
 @Entity
 public class Tecnico implements Serializable {
+
     @Id
+    @GeneratedValue
+    private Long id;
     private String nome;
     private String dataNascimento;
-    
-    //private Selecao selecao;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -40,16 +48,17 @@ public class Tecnico implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
-    /*public Selecao getSelecao() {
-        return selecao;
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 71 * hash + Objects.hashCode(this.id);
+        hash = 71 * hash + Objects.hashCode(this.nome);
+        hash = 71 * hash + Objects.hashCode(this.dataNascimento);
+        return hash;
     }
 
-    public void setSelecao(Selecao selecao) {
-        this.selecao = selecao;
-    }*/
-    
     @Override
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         if (obj == null) {
             return false;
         }
@@ -57,24 +66,16 @@ public class Tecnico implements Serializable {
             return false;
         }
         final Tecnico other = (Tecnico) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
         if (!Objects.equals(this.dataNascimento, other.dataNascimento)) {
             return false;
         }
-        /*if (!Objects.equals(this.selecao, other.selecao)) {
-            return false;
-        }*/
-        return false;
+        return true;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.nome);
-        hash = 71 * hash + Objects.hashCode(this.dataNascimento);
-       // hash = 71 * hash + Objects.hashCode(this.selecao);
-        return hash;
-    }
 }
