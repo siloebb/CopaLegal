@@ -7,7 +7,6 @@
 package crud;
 
 import java.util.List;
-import model.Pais;
 import model.Tecnico;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -74,7 +73,7 @@ public class TecnicoCRUDTest {
          TecnicoCRUD tec = new TecnicoCRUD();
          tec.create(tecnico1);
          
-        Tecnico novo = tec.ready(tecnico1.getNome());
+        Tecnico novo = tec.ready(tecnico1.getId());
         assertEquals(tecnico1, novo);
         
         
@@ -106,13 +105,13 @@ public class TecnicoCRUDTest {
         
         
         tec.create(tecnico1);
-        Tecnico ready = tec.ready(tecnico1.getNome());
+        Tecnico ready = tec.ready(tecnico1.getId());
         
         ready.setDataNascimento("30/05/1978");        
         
         tec.update(ready);
         
-        ready = tec.ready(tecnico1.getNome());
+        ready = tec.ready(tecnico1.getId());
         assertEquals("30/05/1978", ready.getDataNascimento());
         
     }

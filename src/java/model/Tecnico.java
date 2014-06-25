@@ -18,11 +18,11 @@ import javax.persistence.Id;
 @Entity
 public class Tecnico implements Serializable {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     private Long id;
     private String nome;
     private String dataNascimento;
+    //private Selecao selecao;
 
     public Long getId() {
         return id;
@@ -48,12 +48,21 @@ public class Tecnico implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
+    /*public Selecao getSelecao() {
+        return selecao;
+    }
+
+    public void setSelecao(Selecao selecao) {
+        this.selecao = selecao;
+    }*/
+    
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 71 * hash + Objects.hashCode(this.id);
         hash = 71 * hash + Objects.hashCode(this.nome);
         hash = 71 * hash + Objects.hashCode(this.dataNascimento);
+        // hash = 71 * hash + Objects.hashCode(this.selecao);
         return hash;
     }
 
@@ -75,7 +84,10 @@ public class Tecnico implements Serializable {
         if (!Objects.equals(this.dataNascimento, other.dataNascimento)) {
             return false;
         }
-        return true;
+        /*if (!Objects.equals(this.selecao, other.selecao)) {
+            return false;
+        }*/
+        return false;
     }
 
 }
