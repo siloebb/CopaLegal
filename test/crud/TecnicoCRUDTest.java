@@ -9,31 +9,37 @@ package crud;
 import java.util.List;
 import model.Tecnico;
 import org.junit.After;
-import org.junit.AfterClass;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import util.HibernateUtil;
 
 /**
  *
  * @author Jéssica Magally
  */
 public class TecnicoCRUDTest {
-    
-    public TecnicoCRUDTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
+    TecnicoCRUD instance;
+    Tecnico tecnico1, tecnico2, tecnico3;
     
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
+        HibernateUtil.getInstance().zerarSistema();
+       
+        tecnico1 = new Tecnico();
+        tecnico1.setDataNascimento("22/02/1958");
+        tecnico1.setNome("Felipão");
+        
+        tecnico2 = new Tecnico();
+        tecnico2.setDataNascimento("28/06/1960");
+        tecnico2.setNome("Sampaoli");
+        
+        tecnico3 = new Tecnico();
+        tecnico3.setDataNascimento("28/06/1960");
+        tecnico3.setNome("Paulo Bento");
+        
+        instance = new TecnicoCRUD();
+        instance.deleteAll();
     }
     
     @After
@@ -46,17 +52,14 @@ public class TecnicoCRUDTest {
     @Test
     public void testCreate() {
         System.out.println("create");
+         int valorAntigo =  instance.getList().size();
+        instance.create(tecnico1);
         
-        Tecnico tecnico1 = new Tecnico();
-        tecnico1.setNome("Felipão");
-        tecnico1.setDataNascimento("22/05/1956");
-        
-        TecnicoCRUD tec = new TecnicoCRUD();
-        int valorAntigo =  tec.getList().size();
-        
-        tec.create(tecnico1);   
-        
-        assertEquals(valorAntigo + 1, tec.getList().size(),0);   
+
+        assertEquals(valorAntigo + 1, instance.getList().size(), 0);
+            
+           /* List<Tecnico> resultadoConsulta = instance.getList();
+            assertEquals(tecnico1, resultadoConsulta.get(0));*/
     }
 
     /**
@@ -66,18 +69,13 @@ public class TecnicoCRUDTest {
     public void testReady() {
         System.out.println("ready");
         
-        Tecnico tecnico1 = new Tecnico();
-        tecnico1.setNome("Felipão");
-        tecnico1.setDataNascimento("22/05/1956");
+        instance.create(tecnico1);
+        instance.create(tecnico2);
+        instance.create(tecnico3);
         
-         TecnicoCRUD tec = new TecnicoCRUD();
-         tec.create(tecnico1);
-         
-        Tecnico novo = tec.ready(tecnico1.getId());
-        assertEquals(tecnico1, novo);
-        
-        
-        
+        Tecnico resuTecnico =instance.ready(tecnico1.getId());
+	assertEquals(tecnico1, resuTecnico);
+       
     }
 
     /**
@@ -86,9 +84,17 @@ public class TecnicoCRUDTest {
     @Test
     public void testGetList() {
         System.out.println("getList");
-        TecnicoCRUD tec = new TecnicoCRUD();
         
-        assertNotNull(tec.getList());
+      instance.create(tecnico1);
+      instance.create(tecnico2);	
+      instance.create(tecnico2);
+      
+      List<Tecnico> resultadoConsulta = instance.getList();
+      assertFalse(resultadoConsulta.isEmpty());
+      assertEquals(tecnico1, resultadoConsulta.get(0));
+      assertEquals(tecnico2, resultadoConsulta.get(1));
+      assertEquals(tecnico3, resultadoConsulta.get(2));
+           
     }
 
     /**
@@ -97,48 +103,40 @@ public class TecnicoCRUDTest {
     @Test
     public void testUpdate() {
         System.out.println("update");
-        Tecnico tecnico1 = new Tecnico();
-        tecnico1.setNome("Felipão");
-        tecnico1.setDataNascimento("22/05/1956");
+        instance.create(tecnico1);
+        tecnico1.setNome("Parreira");
+        instance.update(tecnico1);
+        List<Tecnico> resultadoConsulta = instance.getList();
+        assertEquals(tecnico1, resultadoConsulta.get(0));
         
-        TecnicoCRUD tec = new TecnicoCRUD();
-        
-        
-        tec.create(tecnico1);
-        Tecnico ready = tec.ready(tecnico1.getId());
-        
-        ready.setDataNascimento("30/05/1978");        
-        
-        tec.update(ready);
-        
-        ready = tec.ready(tecnico1.getId());
-        assertEquals("30/05/1978", ready.getDataNascimento());
         
     }
 
     /**
      * Test of delete method, of class TecnicoCRUD.
      */
-    /*@Test
+    @Test
     public void testDelete() {
-        System.out.println("delete");
-        Tecnico o = null;
-        TecnicoCRUD instance = new TecnicoCRUD();
-        instance.delete(o);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.create(tecnico1);
+	instance.delete(tecnico1);
+	List<Tecnico> resultadoConsulta = instance.getList();
+	assertTrue(resultadoConsulta.isEmpty());
+        
     }
 
     /**
      * Test of deleteAll method, of class TecnicoCRUD.
      */
-   /* @Test
+    @Test
     public void testDeleteAll() {
-        System.out.println("deleteAll");
-        TecnicoCRUD instance = new TecnicoCRUD();
-        instance.deleteAll();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }*/
+      instance.create(tecnico1);
+      instance.create(tecnico2);	
+      instance.create(tecnico2);
+      
+      instance.deleteAll();
+		
+    List<Tecnico> resultadoConsulta = instance.getList();
+    assertTrue(resultadoConsulta.isEmpty());
+    }
     
 }

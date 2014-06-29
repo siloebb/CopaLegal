@@ -27,7 +27,7 @@ public class TecnicoCRUD implements DAO<Tecnico, Long>{
     @Override
     public void create(Tecnico o) {
         try {
-            sessao = (Session) HibernateUtil.getSessionFactory().openSession();
+            sessao = (Session) HibernateUtil.getInstance().getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
             sessao.save(o);
             transacao.commit();
@@ -48,14 +48,17 @@ public class TecnicoCRUD implements DAO<Tecnico, Long>{
         Tecnico resultado = null;
         
 	try {
-        sessao = HibernateUtil.getSessionFactory().openSession();
-        transacao = sessao.beginTransaction();
+        sessao = HibernateUtil.getInstance().getSessionFactory().openSession();
+        
 
         Query consulta = sessao.createQuery("from Tecnico where id = :id");
         consulta.setLong("id", id);
+        
+        transacao = sessao.beginTransaction();
 
         resultado = (Tecnico) consulta.uniqueResult();
-        transacao.commit();       
+        transacao.commit();   
+        return resultado;
         
         } catch (HibernateException e) {
             System.err.println("Nao foi possivel buscar o objeto. Erro: " + e.getMessage());
@@ -66,17 +69,16 @@ public class TecnicoCRUD implements DAO<Tecnico, Long>{
                 System.err.println("Erro ao fechar operacao de busca. Mensagem: " + e.getMessage());
             }
         }
-	return resultado;	
-    }     
+        return resultado;
+}     
     
 
     @Override
     public List<Tecnico> getList() {
         List<Tecnico> resultado = null;      
-        
-	try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            transacao = sessao.beginTransaction();
+        try {
+            sessao = HibernateUtil.getInstance().getSessionFactory().openSession();
+            
 
             Query consulta = sessao.createQuery("from Tecnico");
 
@@ -101,7 +103,7 @@ public class TecnicoCRUD implements DAO<Tecnico, Long>{
     @Override
     public void update(Tecnico o) {
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao = HibernateUtil.getInstance().getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
             sessao.update(o);
             transacao.commit();

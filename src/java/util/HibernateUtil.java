@@ -18,7 +18,9 @@ import org.hibernate.SessionFactory;
 public class HibernateUtil {
 
     private static final SessionFactory sessionFactory = buildSessionFactory();
-
+    private static HibernateUtil instance = null;
+    
+    
     private static SessionFactory buildSessionFactory() {
         try {
             AnnotationConfiguration cfg = new AnnotationConfiguration();
@@ -33,4 +35,17 @@ public class HibernateUtil {
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
+    
+    public static HibernateUtil getInstance() {
+		if (instance == null) {
+			instance = new HibernateUtil();
+		}
+		return instance;
+    }
+    
+    public void zerarSistema() {
+		instance = null;
+		
+    }
+
 }
