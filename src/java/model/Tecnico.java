@@ -52,20 +52,16 @@ public class Tecnico implements Serializable {
     }
 
     /*public Selecao getSelecao() {
-        return selecao;
+    return selecao;
     }
-
     public void setSelecao(Selecao selecao) {
-        this.selecao = selecao;
+    this.selecao = selecao;
     }*/
-    
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 71 * hash + Objects.hashCode(this.id);
-        hash = 71 * hash + Objects.hashCode(this.nome);
-        hash = 71 * hash + Objects.hashCode(this.dataNascimento);
-        // hash = 71 * hash + Objects.hashCode(this.selecao);
+        hash = 67 * hash + Objects.hashCode(this.nome);
+        hash = 67 * hash + Objects.hashCode(this.dataNascimento);
         return hash;
     }
 
@@ -78,20 +74,16 @@ public class Tecnico implements Serializable {
             return false;
         }
         final Tecnico other = (Tecnico) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
         if (!Objects.equals(this.dataNascimento, other.dataNascimento)) {
             return false;
         }
-        /*if (!Objects.equals(this.selecao, other.selecao)) {
-            return false;
-        }*/
-        return false;
+        return true;
     }
+    
+    
     
 
 }
