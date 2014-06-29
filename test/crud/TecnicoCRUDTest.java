@@ -7,6 +7,7 @@
 package crud;
 
 import java.util.List;
+import model.Pais;
 import model.Tecnico;
 import org.junit.After;
 import static org.junit.Assert.*;
@@ -29,22 +30,22 @@ public class TecnicoCRUDTest {
         tecnico1 = new Tecnico();
         tecnico1.setDataNascimento("22/02/1958");
         tecnico1.setNome("Felipão");
+        System.out.println("update"+tecnico1.getId() );
         
         tecnico2 = new Tecnico();
         tecnico2.setDataNascimento("28/06/1960");
         tecnico2.setNome("Sampaoli");
+        System.out.println("update"+tecnico2.getId() );
         
         tecnico3 = new Tecnico();
         tecnico3.setDataNascimento("28/06/1960");
         tecnico3.setNome("Paulo Bento");
+        System.out.println("update"+tecnico2.getId() );
         
         instance = new TecnicoCRUD();
         instance.deleteAll();
     }
     
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of create method, of class TecnicoCRUD.
@@ -75,6 +76,7 @@ public class TecnicoCRUDTest {
         
         Tecnico resuTecnico =instance.ready(tecnico1.getId());
 	assertEquals(tecnico1, resuTecnico);
+        
        
     }
 
@@ -108,6 +110,8 @@ public class TecnicoCRUDTest {
         instance.update(tecnico1);
         List<Tecnico> resultadoConsulta = instance.getList();
         assertEquals(tecnico1, resultadoConsulta.get(0));
+        System.out.println(tecnico1.getId());
+        System.out.println(resultadoConsulta.get(0).getId());
         
         
     }
