@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package crud;
 
 import java.util.List;
@@ -20,22 +19,22 @@ import static org.junit.Assert.*;
  * @author Bianca
  */
 public class JogadorCRUDTest {
-    
+
     public JogadorCRUDTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -50,12 +49,12 @@ public class JogadorCRUDTest {
         o.setNome("Bianca");
         o.setDataNascimento("12/06/1992");
         o.setCamisa(10);
-  
+
         JogadorCRUD instance = new JogadorCRUD();
         instance.create(o);
-        
-        int valorAntigo =  instance.getList().size();
-        
+
+        int valorAntigo = instance.getList().size();
+
         instance.create(o);
 
         assertEquals(valorAntigo + 1, instance.getList().size(), 0);
@@ -66,7 +65,7 @@ public class JogadorCRUDTest {
      */
     @Test
     public void testReady() {
-       System.out.println("create");
+        System.out.println("create");
         Jogador o = new Jogador();
 
         o.setNome("Brasil");
@@ -77,9 +76,9 @@ public class JogadorCRUDTest {
         instance.create(o);
 
         Jogador novo = instance.ready(o.getID());
-        
+
         assertEquals(o, novo);
-        
+
     }
 
     /**
@@ -88,12 +87,20 @@ public class JogadorCRUDTest {
     @Test
     public void testGetList() {
         System.out.println("getList");
+       
+       Jogador o = new Jogador();
+        o.setNome("Bia boa programadora");
+        o.setDataNascimento("12/06/1992");
+        o.setCamisa(10);
+        
+               
         JogadorCRUD instance = new JogadorCRUD();
-        List<Jogador> expResult = null;
-        List<Jogador> result = instance.getList();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int tamanhoLista = instance.getList().size();
+        
+        instance.create(o);
+        
+        assertEquals(tamanhoLista+1,instance.getList().size() );
+        
     }
 
     /**
@@ -102,11 +109,19 @@ public class JogadorCRUDTest {
     @Test
     public void testUpdate() {
         System.out.println("update");
-        Jogador o = null;
+
+        Jogador o = new Jogador();
+        o.setNome("Bialinda");
+        o.setDataNascimento("12/06/1992");
+        o.setCamisa(10);
+
         JogadorCRUD instance = new JogadorCRUD();
+        instance.create(o);
+        o.setNome("BiaMais linda ainda");
+
         instance.update(o);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        assertEquals(o.getNome(), instance.ready(o.getID()).getNome());
     }
 
     /**
@@ -115,11 +130,19 @@ public class JogadorCRUDTest {
     @Test
     public void testDelete() {
         System.out.println("delete");
-        Jogador o = null;
+
+        Jogador o = new Jogador();
+        o.setNome("BiaFeia");
+        o.setDataNascimento("12/06/1992");
+        o.setCamisa(10);
+        
         JogadorCRUD instance = new JogadorCRUD();
+        instance.create(o);
+        
+        Long ID = o.getID();
         instance.delete(o);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
+        assertNull(instance.ready(ID));
     }
 
     /**
@@ -128,10 +151,19 @@ public class JogadorCRUDTest {
     @Test
     public void testDeleteAll() {
         System.out.println("deleteAll");
+        
+        Jogador o = new Jogador();
+        o.setNome("BiaLindissima");
+        o.setDataNascimento("12/06/1992");
+        o.setCamisa(10);
+        
+        
         JogadorCRUD instance = new JogadorCRUD();
+        instance.create(o);
         instance.deleteAll();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+         
+        assertEquals(0, instance.getList().size());
+        
     }
-    
+
 }
