@@ -7,6 +7,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.logging.Logger;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,7 +17,8 @@ import javax.persistence.Id;
  * @author Jéssica Magally
  */
 @Entity
-public class Tecnico implements Serializable {
+public class Tecnico implements Serializable { 
+    private static final long serialVersionUID = -5258230776937584645L;
     
 
     @Id @GeneratedValue
@@ -90,5 +92,6 @@ public class Tecnico implements Serializable {
         }*/
         return false;
     }
+    
 
 }
