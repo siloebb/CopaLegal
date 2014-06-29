@@ -45,7 +45,7 @@ public class JogadorCRUDTest {
      */
     @Test
     public void testCreate() {
-        System.out.println("create agora vai");
+        System.out.println("create agora vai porra");
         Jogador o = new Jogador();
         o.setNome("Bianca");
         o.setDataNascimento("12/06/1992");
