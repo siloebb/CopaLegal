@@ -17,6 +17,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Tecnico implements Serializable {
+    
 
     @Id @GeneratedValue
     private Long id;
