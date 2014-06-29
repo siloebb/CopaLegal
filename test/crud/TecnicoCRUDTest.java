@@ -89,7 +89,7 @@ public class TecnicoCRUDTest {
         
       instance.create(tecnico1);
       instance.create(tecnico2);	
-      instance.create(tecnico2);
+      instance.create(tecnico3);
       
       List<Tecnico> resultadoConsulta = instance.getList();
       assertFalse(resultadoConsulta.isEmpty());
