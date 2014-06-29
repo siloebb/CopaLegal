@@ -63,6 +63,16 @@ public class Jogador implements Serializable {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.ID);
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.dataNascimento);
+        hash = 97 * hash + this.camisa;
+        return hash;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
@@ -80,23 +90,13 @@ public class Jogador implements Serializable {
         if (!Objects.equals(this.dataNascimento, other.dataNascimento)) {
             return false;
         }
-        
-        if (!Objects.equals(this.camisa, other.camisa)) {
+        if (this.camisa != other.camisa) {
             return false;
         }
         return true;
-        }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.ID);
-        hash = 67 * hash + Objects.hashCode(this.nome);
-        hash = 67 * hash + Objects.hashCode(this.dataNascimento);
-        hash = 67 * hash + this.camisa;
-        return hash;
     }
-   
+
+    
 
 }
 

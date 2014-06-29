@@ -14,5 +14,6 @@
     <mapping class="model.Pais"/>
     <mapping class="model.Copa"/>
     <mapping class="model.Tecnico"/>
+    <mapping class="model.Jogador"/>
   </session-factory>
 </hibernate-configuration>

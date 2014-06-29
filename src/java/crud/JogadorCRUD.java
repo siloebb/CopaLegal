@@ -21,6 +21,7 @@ import util.HibernateUtil;
  * @author Bianca
  */
 public class JogadorCRUD implements DAO<Jogador, Long>{
+    
     private Session sessao = null;
     private Transaction transacao = null;
     
@@ -58,7 +59,7 @@ public class JogadorCRUD implements DAO<Jogador, Long>{
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
 
-        Query consulta = sessao.createQuery("from Pais");
+        Query consulta = sessao.createQuery("from Jogador");
 
         resultado = (List<Jogador>) consulta.list();
         transacao.commit();
@@ -92,7 +93,7 @@ public class JogadorCRUD implements DAO<Jogador, Long>{
           sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
 
-        Query consulta = sessao.createQuery("delete from Pais");
+        Query consulta = sessao.createQuery("delete from Jogador");
         consulta.executeUpdate();
         transacao.commit();
 
