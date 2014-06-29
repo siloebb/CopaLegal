@@ -52,9 +52,14 @@ public class TecnicoCRUDTest {
     @Test
     public void testCreate() {
         System.out.println("create");
-            instance.create(tecnico1);
-            List<Tecnico> resultadoConsulta = instance.getList();
-            assertEquals(tecnico1, resultadoConsulta.get(0));
+         int valorAntigo =  instance.getList().size();
+        instance.create(tecnico1);
+        
+
+        assertEquals(valorAntigo + 1, instance.getList().size(), 0);
+            
+           /* List<Tecnico> resultadoConsulta = instance.getList();
+            assertEquals(tecnico1, resultadoConsulta.get(0));*/
     }
 
     /**
