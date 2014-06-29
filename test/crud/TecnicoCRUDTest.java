@@ -12,6 +12,7 @@ import org.junit.After;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import util.HibernateUtil;
 
 /**
  *
@@ -23,6 +24,7 @@ public class TecnicoCRUDTest {
     
     @Before
     public void setUp() throws Exception {
+        HibernateUtil.getInstance().zerarSistema();
        
         tecnico1 = new Tecnico();
         tecnico1.setDataNascimento("22/02/1958");

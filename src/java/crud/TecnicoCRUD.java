@@ -76,7 +76,7 @@ public class TecnicoCRUD implements DAO<Tecnico, Long>{
         
 	try {
             sessao = HibernateUtil.getSessionFactory().openSession();
-            transacao = sessao.beginTransaction();
+            
 
             Query consulta = sessao.createQuery("from Tecnico");
 
