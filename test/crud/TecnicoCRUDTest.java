@@ -7,9 +7,7 @@
 package crud;
 
 import java.util.List;
-import model.Pais;
 import model.Tecnico;
-import org.junit.After;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -57,10 +55,7 @@ public class TecnicoCRUDTest {
         instance.create(tecnico1);
         
 
-        assertEquals(valorAntigo + 1, instance.getList().size(), 0);
-            
-           /* List<Tecnico> resultadoConsulta = instance.getList();
-            assertEquals(tecnico1, resultadoConsulta.get(0));*/
+        assertEquals(valorAntigo + 1, instance.getList().size(), 0);      
     }
 
     /**
@@ -75,8 +70,7 @@ public class TecnicoCRUDTest {
         instance.create(tecnico3);
         
         Tecnico resuTecnico =instance.ready(tecnico1.getId());
-	assertEquals(tecnico1, resuTecnico);
-        
+	assertEquals(tecnico1, resuTecnico);   
        
     }
 
