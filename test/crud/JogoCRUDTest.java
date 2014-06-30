@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package crud;
 
 import java.util.List;
@@ -21,22 +20,22 @@ import static org.junit.Assert.*;
  * @author Bianca
  */
 public class JogoCRUDTest {
-    
+
     public JogoCRUDTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -47,7 +46,7 @@ public class JogoCRUDTest {
     @Test
     public void testCreate() {
         System.out.println("create");
-        
+
         Jogo o = new Jogo();
         o.setData("10/06/2014");
         o.setFase(Fase.PRIMEIRA);
@@ -69,23 +68,21 @@ public class JogoCRUDTest {
      */
     @Test
     public void testReady() {
-        
-         System.out.println("Ready");
-        Jogo o = new Jogo();
 
-      
-        o.setData("10/06/2015");
-        o.setFase(Fase.FINAL);
-        o.setHorario("13:30");
-        o.setLocal("oi");
+       System.out.println("Ready");
+        Jogo o = new Jogo();
+        o.setData("10/06/2032");
+        o.setFase(Fase.OITAVAS);
+        o.setHorario("16:00");
+        o.setLocal("nova");
+
 
         JogoCRUD instance = new JogoCRUD();
         instance.create(o);
 
         Jogo novo = instance.ready(o.getID());
 
-        assertEquals(0, novo);
-        
+        assertEquals(o, novo);
     }
 
     /**
@@ -93,24 +90,22 @@ public class JogoCRUDTest {
      */
     @Test
     public void testGetList() {
-    
-        System.out.println("getList");
-       
-      Jogo o = new Jogo();
 
-      
+        System.out.println("getList");
+
+        Jogo o = new Jogo();
+
         o.setData("10/06/2015");
         o.setFase(Fase.FINAL);
         o.setHorario("13:30");
         o.setLocal("oi");
-        
-               
+
         JogoCRUD instance = new JogoCRUD();
         int tamanhoLista = instance.getList().size();
-        
+
         instance.create(o);
-        
-        assertEquals(tamanhoLista+1,instance.getList().size() );
+
+        assertEquals(tamanhoLista + 1, instance.getList().size());
     }
 
     /**
@@ -118,17 +113,16 @@ public class JogoCRUDTest {
      */
     @Test
     public void testUpdate() {
-       System.out.println("update");
+        System.out.println("update");
 
         Jogo o = new Jogo();
 
-      
         o.setData("10/06/2016");
-       o.setFase(Fase.QUARTAS);
+        o.setFase(Fase.QUARTAS);
         o.setHorario("13:30");
         o.setLocal("oi");
-        
-         JogoCRUD instance = new JogoCRUD();
+
+        JogoCRUD instance = new JogoCRUD();
         instance.create(o);
         o.setHorario("dfdf");
 
@@ -145,18 +139,17 @@ public class JogoCRUDTest {
         System.out.println("delete");
         Jogo o = new Jogo();
 
-      
         o.setData("10/06/2020");
         o.setFase(Fase.QUARTAS);
         o.setHorario("13:30");
         o.setLocal("oi");
-        
-         JogoCRUD instance = new JogoCRUD();
+
+        JogoCRUD instance = new JogoCRUD();
         instance.create(o);
-        
+
         Long ID = o.getID();
         instance.delete(o);
-       
+
         assertNull(instance.ready(ID));
     }
 
@@ -168,19 +161,17 @@ public class JogoCRUDTest {
         System.out.println("deleteAll");
         Jogo o = new Jogo();
 
-      
         o.setData("10/06/2020");
-      o.setFase(Fase.QUARTAS);
+        o.setFase(Fase.QUARTAS);
         o.setHorario("15:30");
         o.setLocal("olalalal");
-        
-        
+
         JogoCRUD instance = new JogoCRUD();
         instance.create(o);
         instance.deleteAll();
-         
+
         assertEquals(0, instance.getList().size());
-        
+
     }
-    
+
 }

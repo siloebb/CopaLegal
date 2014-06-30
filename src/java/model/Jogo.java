@@ -15,6 +15,7 @@ import javax.persistence.Entity;
  *
  * @author Bianca
  */
+@Entity
 public class Jogo implements Serializable{
     
    private static final long serialVersionUID = -5319918998123658180L;
