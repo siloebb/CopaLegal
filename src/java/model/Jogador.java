@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.io.Serializable;
@@ -19,17 +18,17 @@ import static org.hibernate.type.TypeFactory.serializable;
  */
 @Entity
 public class Jogador implements Serializable {
-   
-     private static final long serialVersionUID = -9044313684419486527L;
-   
-    @Id @GeneratedValue
+
+    private static final long serialVersionUID = 7514464454413143711L;
+
+    @Id
+    @GeneratedValue
     private Long ID;
     private String nome;
     private String dataNascimento;
-    private int camisa;
-    
-    
-    
+    private int numero;
+    private Posicao posicao;
+
     public Long getID() {
         return ID;
     }
@@ -37,8 +36,8 @@ public class Jogador implements Serializable {
     public void setID(Long ID) {
         this.ID = ID;
     }
-    
-     public String getNome() {
+
+    public String getNome() {
         return nome;
     }
 
@@ -53,13 +52,21 @@ public class Jogador implements Serializable {
     public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-    
-    public int getCamisa() {
-        return camisa;
+
+    public int getNumero() {
+        return numero;
     }
 
-    public void setCamisa(int camisa) {
-        this.camisa = camisa;
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public Posicao getPosicao() {
+        return posicao;
+    }
+
+    public void setPosicao(Posicao posicao) {
+        this.posicao = posicao;
     }
 
     @Override
@@ -68,7 +75,8 @@ public class Jogador implements Serializable {
         hash = 97 * hash + Objects.hashCode(this.ID);
         hash = 97 * hash + Objects.hashCode(this.nome);
         hash = 97 * hash + Objects.hashCode(this.dataNascimento);
-        hash = 97 * hash + this.camisa;
+        hash = 97 * hash + this.numero;
+        hash = 97 * hash + Objects.hashCode(this.posicao);
         return hash;
     }
 
@@ -90,14 +98,13 @@ public class Jogador implements Serializable {
         if (!Objects.equals(this.dataNascimento, other.dataNascimento)) {
             return false;
         }
-        if (this.camisa != other.camisa) {
+        if (this.numero != other.numero) {
+            return false;
+        }
+        if (this.posicao != other.posicao) {
             return false;
         }
         return true;
     }
 
-    
-
 }
-
-   
