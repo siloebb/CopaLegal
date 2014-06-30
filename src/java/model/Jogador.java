@@ -20,17 +20,16 @@ import static org.hibernate.type.TypeFactory.serializable;
 @Entity
 public class Jogador implements Serializable {
    
-      private static final long serialVersionUID = 7041218298196414875L;
-    
-
+     private static final long serialVersionUID = -9044313684419486527L;
    
     @Id @GeneratedValue
     private Long ID;
     private String nome;
     private String dataNascimento;
     private int camisa;
-    private Posicao posicao;
-
+    
+    
+    
     public Long getID() {
         return ID;
     }
@@ -38,8 +37,8 @@ public class Jogador implements Serializable {
     public void setID(Long ID) {
         this.ID = ID;
     }
-
-    public String getNome() {
+    
+     public String getNome() {
         return nome;
     }
 
@@ -54,7 +53,7 @@ public class Jogador implements Serializable {
     public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-
+    
     public int getCamisa() {
         return camisa;
     }
@@ -63,22 +62,13 @@ public class Jogador implements Serializable {
         this.camisa = camisa;
     }
 
-    public Posicao getPosicao() {
-        return posicao;
-    }
-
-    public void setPosicao(Posicao posicao) {
-        this.posicao = posicao;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 41 * hash + Objects.hashCode(this.ID);
-        hash = 41 * hash + Objects.hashCode(this.nome);
-        hash = 41 * hash + Objects.hashCode(this.dataNascimento);
-        hash = 41 * hash + this.camisa;
-        hash = 41 * hash + Objects.hashCode(this.posicao);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.ID);
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.dataNascimento);
+        hash = 97 * hash + this.camisa;
         return hash;
     }
 
@@ -103,12 +93,10 @@ public class Jogador implements Serializable {
         if (this.camisa != other.camisa) {
             return false;
         }
-        if (this.posicao != other.posicao) {
-            return false;
-        }
         return true;
     }
-   
+
+    
 
 }
 
