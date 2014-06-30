@@ -7,7 +7,6 @@ package model;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.logging.Logger;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,7 +24,6 @@ public class Tecnico implements Serializable {
     private Long id;
     private String nome;
     private String dataNascimento;
-    //private Selecao selecao;
 
     public Long getId() {
         return id;
@@ -51,12 +49,7 @@ public class Tecnico implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
-    /*public Selecao getSelecao() {
-    return selecao;
-    }
-    public void setSelecao(Selecao selecao) {
-    this.selecao = selecao;
-    }*/
+   
     @Override
     public int hashCode() {
         int hash = 5;
