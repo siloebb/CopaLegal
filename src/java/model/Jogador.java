@@ -28,6 +28,7 @@ public class Jogador implements Serializable {
     private String dataNascimento;
     private int numero;
     private Posicao posicao;
+    private int camisa;
 
     public Long getID() {
         return ID;
@@ -105,6 +106,10 @@ public class Jogador implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public void setCamisa(int camisa) {
+       this.camisa = camisa;
     }
 
 }
