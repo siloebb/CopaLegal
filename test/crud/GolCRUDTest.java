@@ -6,6 +6,7 @@
 
 package crud;
 
+import java.util.List;
 import model.Gol;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,20 +24,25 @@ public class GolCRUDTest {
     
     @Before
     public void setUp() throws Exception{
+        HibernateUtil.getInstance().zerarSistema();
         
        
         gol1 = new Gol();
-        
-        
-        System.out.println("update"+gol1.getId() );
+        gol1.setTempo("36:30");
+        gol1.setFoiContra(false);   
+        System.out.println("update" +gol1.getId() );
         
         gol2 = new Gol();
+        gol2.setTempo("10:30");
+        gol2.setFoiContra(false); 
         
-        System.out.println("update"+gol2.getId() );
+        System.out.println("update" +gol2.getId() );
         
         gol3 = new Gol();
+        gol3.setTempo("00:30");
+        gol3.setFoiContra(true); 
         
-        System.out.println("update"+gol2.getId() );
+        System.out.println("update" +gol3.getId() );
         
         instance = new GolCRUD();
         instance.deleteAll();
@@ -64,6 +70,13 @@ public class GolCRUDTest {
     @Test
     public void testReady() {
         System.out.println("ready");
+        
+        instance.create(gol1);
+        instance.create(gol2);
+        instance.create(gol3);
+        
+        Gol resuGol =instance.ready(gol1.getId());
+	assertEquals(gol1, resuGol);
        
     }
 
@@ -72,7 +85,16 @@ public class GolCRUDTest {
      */
     @Test
     public void testGetList() {
-        System.out.println("getList");
+      System.out.println("getList");
+      instance.create(gol1);
+      instance.create(gol2);	
+      instance.create(gol3);
+      
+      List<Gol> resultadoConsulta = instance.getList();
+      assertFalse(resultadoConsulta.isEmpty());
+      assertEquals(gol1, resultadoConsulta.get(0));
+      assertEquals(gol2, resultadoConsulta.get(1));
+      assertEquals(gol3, resultadoConsulta.get(2));
         
     }
 
@@ -83,6 +105,13 @@ public class GolCRUDTest {
     public void testUpdate() {
         System.out.println("update");
         
+        instance.create(gol1);
+        gol1.setFoiContra(true);
+        instance.update(gol1);
+        List<Gol> resultadoConsulta = instance.getList();
+        assertEquals(gol1, resultadoConsulta.get(0));
+        System.out.println(gol1.getId());
+        System.out.println(resultadoConsulta.get(0).getId());
     }
 
     /**
@@ -91,6 +120,10 @@ public class GolCRUDTest {
     @Test
     public void testDelete() {
         System.out.println("delete");
+        instance.create(gol1);
+	instance.delete(gol1);
+	List<Gol> resultadoConsulta = instance.getList();
+	assertTrue(resultadoConsulta.isEmpty());
         
     }
 
@@ -99,7 +132,15 @@ public class GolCRUDTest {
      */
     @Test
     public void testDeleteAll() {
-        System.out.println("deleteAll");
+      System.out.println("deleteAll");
+      instance.create(gol1);
+      instance.create(gol2);	
+      instance.create(gol3);
+      
+      instance.deleteAll();
+		
+    List<Gol> resultadoConsulta = instance.getList();
+    assertTrue(resultadoConsulta.isEmpty());
        
     }
     

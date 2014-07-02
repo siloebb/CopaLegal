@@ -15,6 +15,7 @@
     <mapping class="model.Copa"/>
     <mapping class="model.Tecnico"/>
     <mapping class="model.Jogador"/>
+    <mapping class="model.Jogo"/>
     <mapping class="model.Gol"/>
     
   </session-factory>
