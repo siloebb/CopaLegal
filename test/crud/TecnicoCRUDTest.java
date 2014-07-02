@@ -51,7 +51,7 @@ public class TecnicoCRUDTest {
     @Test
     public void testCreate() {
         System.out.println("create");
-         int valorAntigo =  instance.getList().size();
+        int valorAntigo =  instance.getList().size();
         instance.create(tecnico1);
         
 
