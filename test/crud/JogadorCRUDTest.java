@@ -48,7 +48,7 @@ public class JogadorCRUDTest {
         Jogador o = new Jogador();
         o.setNome("Bianca");
         o.setDataNascimento("12/06/1992");
-        o.setCamisa(10);
+        o.setNumero(10);
 
         JogadorCRUD instance = new JogadorCRUD();
         instance.create(o);
@@ -70,7 +70,7 @@ public class JogadorCRUDTest {
 
         o.setNome("Brasil");
         o.setDataNascimento("BR");
-        o.setCamisa(10);
+        o.setNumero(10);
 
         JogadorCRUD instance = new JogadorCRUD();
         instance.create(o);
@@ -91,7 +91,7 @@ public class JogadorCRUDTest {
        Jogador o = new Jogador();
         o.setNome("Bia boa programadora");
         o.setDataNascimento("12/06/1992");
-        o.setCamisa(10);
+        o.setNumero(10);
         
                
         JogadorCRUD instance = new JogadorCRUD();
@@ -113,7 +113,7 @@ public class JogadorCRUDTest {
         Jogador o = new Jogador();
         o.setNome("Bialinda");
         o.setDataNascimento("12/06/1992");
-        o.setCamisa(10);
+        o.setNumero(10);
 
         JogadorCRUD instance = new JogadorCRUD();
         instance.create(o);
@@ -134,7 +134,7 @@ public class JogadorCRUDTest {
         Jogador o = new Jogador();
         o.setNome("BiaFeia");
         o.setDataNascimento("12/06/1992");
-        o.setCamisa(10);
+        o.setNumero(10);
         
         JogadorCRUD instance = new JogadorCRUD();
         instance.create(o);
@@ -155,7 +155,7 @@ public class JogadorCRUDTest {
         Jogador o = new Jogador();
         o.setNome("BiaLindissima");
         o.setDataNascimento("12/06/1992");
-        o.setCamisa(10);
+        o.setNumero(10);
         
         
         JogadorCRUD instance = new JogadorCRUD();
