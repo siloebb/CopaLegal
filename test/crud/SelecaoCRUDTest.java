@@ -6,12 +6,16 @@
 
 package crud;
 
+import model.Pais;
 import model.Selecao;
+import model.Tecnico;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -49,7 +53,10 @@ public class SelecaoCRUDTest {
         s.setAno(1930);
         s.setPosicao(30);
         s.setGrupo("A");
-        
+        Tecnico t = new Tecnico();
+        s.setTecnico(t);
+        Pais p = new Pais();
+        s.setPais(p);
         SelecaoCRUD instance = new SelecaoCRUD();
         instance.create(s);
         
@@ -69,6 +76,10 @@ public class SelecaoCRUDTest {
         s.setAno(1920);
         s.setGrupo("B");
         s.setPosicao(45);
+        Pais p = new Pais();
+        s.setPais(p);
+        Tecnico t = new Tecnico();
+        s.setTecnico(t);
         
         SelecaoCRUD instance = new SelecaoCRUD();
         instance.create(s);
@@ -87,6 +98,10 @@ public class SelecaoCRUDTest {
         s.setAno(1500);
         s.setGrupo("Z");
         s.setPosicao(100);
+        Pais p = new Pais();
+        s.setPais(p);
+        Tecnico t = new Tecnico();
+        s.setTecnico(t);
         
         SelecaoCRUD instance = new SelecaoCRUD();
         int tamanhoLista = instance.getList().size();
@@ -103,6 +118,10 @@ public class SelecaoCRUDTest {
         s.setAno(1230);
         s.setGrupo("G");
         s.setPosicao(1000);
+        Pais p = new Pais();
+        s.setPais(p);
+        Tecnico t = new Tecnico();
+        s.setTecnico(t);
         
         SelecaoCRUD instance = new SelecaoCRUD();
         instance.create(s);
@@ -122,6 +141,10 @@ public class SelecaoCRUDTest {
         s.setAno(1);
         s.setGrupo("P");
         s.setPosicao(1780);
+        Tecnico t = new Tecnico();
+        s.setTecnico(t);
+        Pais p = new Pais();
+        s.setPais(p);
         
         SelecaoCRUD instance = new SelecaoCRUD();
         instance.create(s);
@@ -143,6 +166,10 @@ public class SelecaoCRUDTest {
         s.setAno(2);
         s.setGrupo("J");
         s.setPosicao(230);
+        Tecnico t = new Tecnico();
+        s.setTecnico(t);
+        Pais p = new Pais();
+        s.setPais(p);
         
         SelecaoCRUD instance = new SelecaoCRUD();
         instance.create(s);

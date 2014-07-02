@@ -19,5 +19,6 @@
     <mapping class="model.Gol"/>
     
     <mapping class="model.Selecao"/>
+    <mapping class="model.Escalacao"/>
   </session-factory>
 </hibernate-configuration>

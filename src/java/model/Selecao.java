@@ -27,6 +27,22 @@ public class Selecao implements Serializable{
     private int ano;
     private int posicao;
     private String grupo;
+    private Tecnico tecnico;
+    private Pais pais;
+    
+    public void setPais(Pais pais){
+        this.pais = pais;
+    }
+    public Pais getPais(){
+        return this.pais;
+    }
+    
+    public Tecnico getTecnico(){
+        return this.tecnico;
+    }
+    public void setTecnico(Tecnico tecnico){
+        this.tecnico = tecnico;
+    }
     
     public Long getID() {
         return ID;
@@ -62,7 +78,8 @@ public class Selecao implements Serializable{
         hash = 11 * hash + this.ano;
         hash = 11 * hash + this.posicao;
         hash = 11 * hash + Objects.hashCode(this.grupo);
-        
+        hash = 11 * hash + Objects.hashCode(this.tecnico);
+        hash = 11 * hash + Objects.hashCode(this.pais);
         return hash;
     }
     @Override
@@ -78,6 +95,12 @@ public class Selecao implements Serializable{
             return false;
         }
         if (!Objects.equals(this.grupo, other.grupo)) {
+            return false;
+        }
+        if (!Objects.equals(this.pais, other.pais)) {
+            return false;
+        }
+        if (!Objects.equals(this.tecnico, other.tecnico)) {
             return false;
         }
         if (this.ano != other.ano) {
