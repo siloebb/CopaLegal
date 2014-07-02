@@ -19,7 +19,7 @@ import javax.persistence.Id;
 public class Tecnico implements Serializable { 
     private static final long serialVersionUID = -5258230776937584645L;
     
-
+    
     @Id @GeneratedValue
     private Long id;
     private String nome;
