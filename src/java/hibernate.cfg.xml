@@ -17,8 +17,9 @@
     <mapping class="model.Jogador"/>
     <mapping class="model.Jogo"/>
     <mapping class="model.Gol"/>
-    
     <mapping class="model.Selecao"/>
     <mapping class="model.Escalacao"/>
+    <mapping class="model.Substituicao"/>
+    
   </session-factory>
 </hibernate-configuration>

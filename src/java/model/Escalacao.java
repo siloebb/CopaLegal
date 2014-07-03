@@ -7,11 +7,7 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.Array;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,6 +19,9 @@ import javax.persistence.Id;
  */
 @Entity
 public class Escalacao implements Serializable{
+    
+    private static final long serialVersionUID = 7799705139670891224L;
+    
     @Id
     @GeneratedValue
     private Long ID;
@@ -89,4 +88,5 @@ public class Escalacao implements Serializable{
             jogadores.remove(jogador);
         }
     }
+    
 }

@@ -9,7 +9,6 @@ package crud;
 import interfaces.DAO;
 import java.util.List;
 import model.Escalacao;
-import model.Jogador;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
