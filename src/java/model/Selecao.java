@@ -29,6 +29,7 @@ public class Selecao implements Serializable{
     private String grupo;
     private Tecnico tecnico;
     private Pais pais;
+    private Jogador jogador;
     
     public void setPais(Pais pais){
         this.pais = pais;
