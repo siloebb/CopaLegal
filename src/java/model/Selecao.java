@@ -11,6 +11,7 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -27,8 +28,11 @@ public class Selecao implements Serializable{
     private int ano;
     private int posicao;
     private String grupo;
+    @ManyToOne
     private Tecnico tecnico;
+    @ManyToOne
     private Pais pais;
+    @ManyToOne
     private Jogador jogador;
     
     public void setPais(Pais pais){

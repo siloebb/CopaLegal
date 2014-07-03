@@ -8,7 +8,9 @@ package crud;
 
 import java.util.List;
 import model.Copa;
+import model.Fase;
 import model.Gol;
+import model.Jogo;
 import model.Pais;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -45,7 +47,7 @@ public class OutOfCRUDTest {
     /**
      * Test of listarPaisesCopa method, of class OutOfCRUD.
      */
-    @Test
+    //@Test
     public void testListarPaisesCopa() {
         System.out.println("listarPaisesCopa");
         
@@ -70,7 +72,50 @@ public class OutOfCRUDTest {
         
         List<Pais> result = ooc.listarPaisesCopa(copa);
         
+        for (Pais pais : result) {
+            System.out.println("SAPO Pais = "+pais.getNome());
+        }
+        
         assertEquals(1, result.size());
+    }
+    
+    @Test
+    public void testGetPlacarDoJogo(){
+        Jogo o = new Jogo();
+        o.setData("10/06/2014");
+        o.setFase(Fase.PRIMEIRA);
+        o.setHorario("13:00");
+        o.setLocal("arena fonte nova");
+
+        JogoCRUD instance = new JogoCRUD();
+        instance.create(o);
+        
+        Gol gol1, gol2, gol3;
+        
+        gol1 = new Gol();
+        gol1.setTempo(10005l);
+        gol1.setFoiContra(false);   
+        gol1.setJogo(o);
+        
+        gol2 = new Gol();
+        gol2.setTempo(22000l);
+        gol2.setJogo(o);
+        gol2.setFoiContra(false);
+        
+        gol3 = new Gol();
+        gol3.setTempo(50000l);
+        gol3.setJogo(o);
+        gol3.setFoiContra(true);
+        
+        GolCRUD golCRUD = new GolCRUD();
+        golCRUD.create(gol1);
+        golCRUD.create(gol2);
+        golCRUD.create(gol3);
+        
+        OutOfCRUD ooCRUD = new OutOfCRUD();
+        List<Gol> placarDoJogo = ooCRUD.getPlacarDoJogo(o);
+        
+        assertEquals(3, placarDoJogo.size());
     }
     
 }

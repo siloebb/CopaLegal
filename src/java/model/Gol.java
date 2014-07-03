@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.io.Serializable;
@@ -20,19 +19,18 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Gol implements Serializable {
-    
+
     private static final long serialVersionUID = -2907254920271989355L;
-    
-    
-    
-    @Id @GeneratedValue
-     private Long id;
-    @OneToOne
-     private Jogador jogador;
+
+    @Id
+    @GeneratedValue
+    private Long id;
     @ManyToOne
-     private Jogo jogo;
-     private Long tempo;
-     private boolean foiContra;
+    private Jogador jogador;
+    @ManyToOne
+    private Jogo jogo;
+    private Long tempo;
+    private boolean foiContra;
 
     public Long getId() {
         return id;
@@ -106,7 +104,6 @@ public class Gol implements Serializable {
             return false;
         }
         return true;
-    }    
-     
-    
+    }
+
 }
