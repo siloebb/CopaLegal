@@ -31,7 +31,7 @@ public class Gol implements Serializable {
      private Jogador jogador;
     @ManyToOne
      private Jogo jogo;
-     private String tempo;
+     private Long tempo;
      private boolean foiContra;
 
     public Long getId() {
@@ -58,11 +58,11 @@ public class Gol implements Serializable {
         this.jogo = jogo;
     }
 
-    public String getTempo() {
+    public Long getTempo() {
         return tempo;
     }
 
-    public void setTempo(String tempo) {
+    public void setTempo(Long tempo) {
         this.tempo = tempo;
     }
 

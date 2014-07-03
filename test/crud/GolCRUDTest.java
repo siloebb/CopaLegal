@@ -19,8 +19,8 @@ import util.HibernateUtil;
  */
 public class GolCRUDTest {
     GolCRUD instance;
-    Gol gol1, gol2, gol3;
-    
+    Gol gol1 =null, gol2, gol3;
+        
     
     @Before
     public void setUp() throws Exception{
@@ -28,18 +28,18 @@ public class GolCRUDTest {
         
        
         gol1 = new Gol();
-        gol1.setTempo("36:30");
+        gol1.setTempo(10005l);
         gol1.setFoiContra(false);   
         System.out.println("update" +gol1.getId() );
         
         gol2 = new Gol();
-        gol2.setTempo("10:30");
+        gol2.setTempo(10005l);
         gol2.setFoiContra(false); 
         
         System.out.println("update" +gol2.getId() );
         
         gol3 = new Gol();
-        gol3.setTempo("00:30");
+        gol3.setTempo(10005l);
         gol3.setFoiContra(true); 
         
         System.out.println("update" +gol3.getId() );
