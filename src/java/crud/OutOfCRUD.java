@@ -5,6 +5,7 @@ import model.Copa;
 import model.Gol;
 import model.Jogo;
 import model.Pais;
+import model.Selecao;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -56,7 +57,7 @@ public class OutOfCRUD {
             }
         }
     }
-    
+
     //18
     public List<Gol> getPlacarDoJogo(Jogo jogo) {
         List<Gol> resultado = null;
@@ -80,6 +81,23 @@ public class OutOfCRUD {
                 System.err.println("Erro ao fechar operacao de listagem. Mensagem: " + e.getMessage());
             }
         }
+    }
+
+    //29
+    public List<Selecao> getRankingSelecao(Copa copa) {
+        List<Selecao> resultado = null;
+
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+
+        Query consulta = sessao.createQuery("from Selecao as selecao where selecao.ano = :idCopa order by selecao.posicao asc");
+        consulta.setInteger("idCopa", copa.getAno());
+
+        resultado = (List<Selecao>) consulta.list();
+        transacao.commit();
+        sessao.close();
+
+        return resultado;
     }
 
 }

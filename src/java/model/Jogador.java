@@ -109,7 +109,7 @@ public class Jogador implements Serializable {
     }
 
     public void setCamisa(int camisa) {
-       this.camisa = camisa;
+        this.camisa = camisa;
     }
 
 }

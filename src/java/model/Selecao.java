@@ -33,22 +33,10 @@ public class Selecao implements Serializable{
     @ManyToOne
     private Pais pais;
     @ManyToOne
+    private Copa copa;
+    @ManyToOne
     private Jogador jogador;
-    
-    public void setPais(Pais pais){
-        this.pais = pais;
-    }
-    public Pais getPais(){
-        return this.pais;
-    }
-    
-    public Tecnico getTecnico(){
-        return this.tecnico;
-    }
-    public void setTecnico(Tecnico tecnico){
-        this.tecnico = tecnico;
-    }
-    
+
     public Long getID() {
         return ID;
     }
@@ -56,62 +44,108 @@ public class Selecao implements Serializable{
     public void setID(Long ID) {
         this.ID = ID;
     }
-    
-    public void setAno(int ano){
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
         this.ano = ano;
     }
-    public int getAno(){
-        return this.ano;
+
+    public int getPosicao() {
+        return posicao;
     }
-    public void setPosicao(int posicao){
+
+    public void setPosicao(int posicao) {
         this.posicao = posicao;
     }
-    public int getPosicao(){
-        return this.posicao;
+
+    public String getGrupo() {
+        return grupo;
     }
-    public void setGrupo(String grupo){
+
+    public void setGrupo(String grupo) {
         this.grupo = grupo;
     }
-    public String getGrupo(){
-        return this.grupo;
+
+    public Tecnico getTecnico() {
+        return tecnico;
     }
-    
+
+    public void setTecnico(Tecnico tecnico) {
+        this.tecnico = tecnico;
+    }
+
+    public Pais getPais() {
+        return pais;
+    }
+
+    public void setPais(Pais pais) {
+        this.pais = pais;
+    }
+
+    public Copa getCopa() {
+        return copa;
+    }
+
+    public void setCopa(Copa copa) {
+        this.copa = copa;
+    }
+
+    public Jogador getJogador() {
+        return jogador;
+    }
+
+    public void setJogador(Jogador jogador) {
+        this.jogador = jogador;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 11 * hash + Objects.hashCode(this.ID);
-        hash = 11 * hash + this.ano;
-        hash = 11 * hash + this.posicao;
-        hash = 11 * hash + Objects.hashCode(this.grupo);
-        hash = 11 * hash + Objects.hashCode(this.tecnico);
-        hash = 11 * hash + Objects.hashCode(this.pais);
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.ID);
+        hash = 79 * hash + this.ano;
+        hash = 79 * hash + this.posicao;
+        hash = 79 * hash + Objects.hashCode(this.grupo);
+        hash = 79 * hash + Objects.hashCode(this.tecnico);
+        hash = 79 * hash + Objects.hashCode(this.pais);
+        hash = 79 * hash + Objects.hashCode(this.copa);
+        hash = 79 * hash + Objects.hashCode(this.jogador);
         return hash;
     }
+
     @Override
-    public boolean equals(Object objeto) {
-        if (objeto == null) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        if (getClass() != objeto.getClass()) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        final Selecao other = (Selecao) objeto;
+        final Selecao other = (Selecao) obj;
         if (!Objects.equals(this.ID, other.ID)) {
-            return false;
-        }
-        if (!Objects.equals(this.grupo, other.grupo)) {
-            return false;
-        }
-        if (!Objects.equals(this.pais, other.pais)) {
-            return false;
-        }
-        if (!Objects.equals(this.tecnico, other.tecnico)) {
             return false;
         }
         if (this.ano != other.ano) {
             return false;
         }
         if (this.posicao != other.posicao) {
+            return false;
+        }
+        if (!Objects.equals(this.grupo, other.grupo)) {
+            return false;
+        }
+        if (!Objects.equals(this.tecnico, other.tecnico)) {
+            return false;
+        }
+        if (!Objects.equals(this.pais, other.pais)) {
+            return false;
+        }
+        if (!Objects.equals(this.copa, other.copa)) {
+            return false;
+        }
+        if (!Objects.equals(this.jogador, other.jogador)) {
             return false;
         }
         return true;
