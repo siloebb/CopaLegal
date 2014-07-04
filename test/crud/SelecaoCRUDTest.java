@@ -6,6 +6,8 @@
 
 package crud;
 
+import java.util.ArrayList;
+import model.Jogador;
 import model.Pais;
 import model.Selecao;
 import model.Tecnico;
@@ -45,6 +47,10 @@ public class SelecaoCRUDTest {
     @Test
     public void createTest(){
         System.out.println("create");
+        TecnicoCRUD tcrud = new TecnicoCRUD();
+        PaisCRUD pcrud = new PaisCRUD();
+        JogadorCRUD jcrud = new JogadorCRUD();
+        
         Selecao s = new Selecao();
         s.setAno(1930);
         s.setPosicao(30);
@@ -53,6 +59,20 @@ public class SelecaoCRUDTest {
         s.setTecnico(t);
         Pais p = new Pais();
         s.setPais(p);
+        
+        Jogador j = new Jogador();
+        j.setNome("Julinho");
+        j.setNumero(25);
+        jcrud.create(j);
+        
+        ArrayList<Jogador> list = new ArrayList<>();
+        list.add(j);
+        
+        s.setJogador(list);
+        
+        pcrud.create(p);
+        tcrud.create(t);
+        
         SelecaoCRUD instance = new SelecaoCRUD();
         instance.create(s);
         

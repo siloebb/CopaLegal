@@ -7,10 +7,14 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 /**
@@ -34,8 +38,9 @@ public class Selecao implements Serializable{
     private Pais pais;
     @ManyToOne
     private Copa copa;
-    @ManyToOne
-    private Jogador jogador;
+    @ManyToMany
+    @JoinTable(name="selecao_jogador", joinColumns={@JoinColumn(name="selecao_ID")})
+    private List<Jogador> jogador;
 
     public Long getID() {
         return ID;
@@ -93,25 +98,25 @@ public class Selecao implements Serializable{
         this.copa = copa;
     }
 
-    public Jogador getJogador() {
+    public List<Jogador> getJogador() {
         return jogador;
     }
 
-    public void setJogador(Jogador jogador) {
+    public void setJogador(List<Jogador> jogador) {
         this.jogador = jogador;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.ID);
-        hash = 79 * hash + this.ano;
-        hash = 79 * hash + this.posicao;
-        hash = 79 * hash + Objects.hashCode(this.grupo);
-        hash = 79 * hash + Objects.hashCode(this.tecnico);
-        hash = 79 * hash + Objects.hashCode(this.pais);
-        hash = 79 * hash + Objects.hashCode(this.copa);
-        hash = 79 * hash + Objects.hashCode(this.jogador);
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.ID);
+        hash = 83 * hash + this.ano;
+        hash = 83 * hash + this.posicao;
+        hash = 83 * hash + Objects.hashCode(this.grupo);
+        hash = 83 * hash + Objects.hashCode(this.tecnico);
+        hash = 83 * hash + Objects.hashCode(this.pais);
+        hash = 83 * hash + Objects.hashCode(this.copa);
+        hash = 83 * hash + Objects.hashCode(this.jogador);
         return hash;
     }
 
@@ -150,5 +155,7 @@ public class Selecao implements Serializable{
         }
         return true;
     }
+
+    
     
 }
