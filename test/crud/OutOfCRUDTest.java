@@ -49,36 +49,47 @@ public class OutOfCRUDTest {
     /**
      * Test of listarPaisesCopa method, of class OutOfCRUD.
      */
-    //@Test
+    @Test
     public void testListarPaisesCopa() {
         System.out.println("listarPaisesCopa");
         
-        Pais o = new Pais();
+        Pais p1 = new Pais();
 
-        o.setNome("Brasil");
-        o.setSigla("BRA");
-        o.setContinente("South America");
+        p1.setNome("Brasil");
+        p1.setSigla("BRA");
+        p1.setContinente("America do Sul");
+        
+        Pais p2 = new Pais();
+        
+        p2.setNome("Holanda");
+        p2.setSigla("HOL");
+        p2.setContinente("Europa");
 
         PaisCRUD pcrud = new PaisCRUD();        
-        pcrud.create(o);        
+        pcrud.create(p1);  
+        pcrud.create(p2);
         
         Copa copa = new Copa();
         copa.setAno(2014);
         copa.setObservacao("Nenhuma");
-        copa.setPais(o);
+        copa.setPais(p1);
+        copa.setPais(p2);
         
         CopaCRUD instance = new CopaCRUD();
         instance.create(copa);
         
         OutOfCRUD ooc = new OutOfCRUD();
         
-        List<Pais> result = ooc.listarPaisesCopa(copa);
+        List<Pais> result = pcrud.getList();
+        //List<Pais> result = ooc.listarPaisesCopa(copa);
         
         for (Pais pais : result) {
             System.out.println("SAPO Pais = "+pais.getNome());
         }
         
-        assertEquals(1, result.size());
+        assertEquals(p1, result.get(0));
+        assertEquals(p2, result.get(1));
+        assertEquals(2, result.size());
     }
     
     @Test

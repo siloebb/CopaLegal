@@ -34,28 +34,19 @@ public class OutOfCRUD {
         sessao.close();
         return resultado;
     }
-
+    //17
     public List<Pais> listarPaisesCopa(Copa copa) {
         List<Pais> resultado = null;
-        try {
+       
             sessao = HibernateUtil.getSessionFactory().openSession();
-
-            Query consulta = sessao.createQuery("from Pais p inner join Copa where ano=:parametro");
-            consulta.setInteger("parametro", copa.getAno());
             transacao = sessao.beginTransaction();
+
+            Query consulta = sessao.createQuery("from Pais as  pais where pais.copa.ano =:idCopa");
+            consulta.setInteger("idCopa", copa.getAno());
+           
             resultado = (List<Pais>) consulta.list();
             transacao.commit();
-            return resultado;
-        } catch (HibernateException e) {
-            System.err.println("Nao foi possivel listar os objetos. Erro: " + e.getMessage());
-            throw new HibernateException(e);
-        } finally {
-            try {
-                sessao.close();
-            } catch (HibernateException e) {
-                System.err.println("Erro ao fechar operacao de listagem. Mensagem: " + e.getMessage());
-            }
-        }
+            return resultado;     
     }
 
     //18
