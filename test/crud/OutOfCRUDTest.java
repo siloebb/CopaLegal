@@ -161,4 +161,69 @@ public class OutOfCRUDTest {
         assertEquals(s, list.get(0));
     }
     
+    @Test
+    public void testListarJogosCopa(){
+        System.out.println("ListarJogosCopa");
+      
+        CopaCRUD ccrud = new CopaCRUD();
+        PaisCRUD pcrud = new PaisCRUD();
+        SelecaoCRUD scrud = new SelecaoCRUD();
+        TecnicoCRUD tcrud = new TecnicoCRUD();
+        
+        Pais p1 = new Pais();
+        p1.setNome("Brasil");
+        
+        Pais p2 = new Pais();
+        p2.setNome("Alemanha");
+        
+        Copa c = new Copa();
+        c.setAno(2014);
+        c.setPais(p1);
+ 
+        
+        Selecao s1 = new Selecao();
+        s1.setAno(2014);
+        s1.setPosicao(2);
+        s1.setGrupo("A");
+        Tecnico t1 = new Tecnico();
+        s1.setTecnico(t1);
+        s1.setPais(p1);
+        
+        Selecao s2 = new Selecao();
+        s2.setAno(2014);
+        s2.setPosicao(3);
+        s2.setGrupo("A");
+        Tecnico t2 = new Tecnico();
+        s2.setTecnico(t2);
+        s2.setPais(p2);
+        
+        pcrud.create(p2);
+        pcrud.create(p1);
+        
+        tcrud.create(t2);
+        tcrud.create(t1);
+        
+        scrud.create(s1);
+        scrud.create(s2);
+        
+        ccrud.create(c);
+        
+        Jogo j1= new Jogo();
+        j1.setAno(2014);
+        j1.setLocal("Brasil");
+        
+        Jogo j2= new Jogo();
+        j2.setAno(2014);
+        j2.setLocal("Brasil");
+                
+        JogoCRUD instance = new JogoCRUD();
+        instance.create(j1);
+        instance.create(j2);
+        
+        List<Jogo> list = instance.getList();
+        
+        assertEquals(j2, list.get(1));
+        assertEquals(j1, list.get(0));
+    }
+    
 }

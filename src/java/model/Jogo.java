@@ -17,12 +17,12 @@ import javax.persistence.Entity;
  */
 @Entity
 public class Jogo implements Serializable{
+    private static final long serialVersionUID = -4887476046596007535L;
+   
     
-   private static final long serialVersionUID = -5319918998123658180L;
-   
-   
     @Id @GeneratedValue
     private Long ID;
+    private Integer ano;
     private String data;
     private String local;
     private String horario;
@@ -37,6 +37,14 @@ public class Jogo implements Serializable{
 
     public void setID(Long ID) {
         this.ID = ID;
+    }
+
+    public Integer getAno() {
+        return ano;
+    }
+
+    public void setAno(Integer ano) {
+        this.ano = ano;
     }
 
     public String getData() {
@@ -73,12 +81,13 @@ public class Jogo implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.ID);
-        hash = 23 * hash + Objects.hashCode(this.data);
-        hash = 23 * hash + Objects.hashCode(this.local);
-        hash = 23 * hash + Objects.hashCode(this.horario);
-        hash = 23 * hash + Objects.hashCode(this.fase);
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.ID);
+        hash = 37 * hash + Objects.hashCode(this.ano);
+        hash = 37 * hash + Objects.hashCode(this.data);
+        hash = 37 * hash + Objects.hashCode(this.local);
+        hash = 37 * hash + Objects.hashCode(this.horario);
+        hash = 37 * hash + Objects.hashCode(this.fase);
         return hash;
     }
 
@@ -92,6 +101,9 @@ public class Jogo implements Serializable{
         }
         final Jogo other = (Jogo) obj;
         if (!Objects.equals(this.ID, other.ID)) {
+            return false;
+        }
+        if (!Objects.equals(this.ano, other.ano)) {
             return false;
         }
         if (!Objects.equals(this.data, other.data)) {
@@ -108,6 +120,6 @@ public class Jogo implements Serializable{
         }
         return true;
     }
-   
+  
    
 }

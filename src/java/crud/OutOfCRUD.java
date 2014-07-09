@@ -100,4 +100,23 @@ public class OutOfCRUD {
         return resultado;
     }
 
+    //19
+    public List<Jogo> listarJogosCopa(Copa copa) {
+        List<Jogo> resultado = null;
+
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+
+        Query consulta = sessao.createQuery("from Jogo as  where jogo jogo.ano = :idCopa ");
+        consulta.setInteger("idCopa", copa.getAno());
+
+        resultado = (List<Jogo>) consulta.list();
+        transacao.commit();
+        sessao.close();
+
+        return resultado;
+    }
+
+    
+    
 }
