@@ -148,7 +148,7 @@ public class OutOfCRUD {
     }
     
     //37
-    public List<Jogo> qtdDeParticipacoesEmCopa(Selecao selecao) {
+    public int qtdDeParticipacoesEmCopa(Selecao selecao) {
         List<Jogo> resultado = null;
 
         sessao = HibernateUtil.getSessionFactory().openSession();
@@ -161,9 +161,24 @@ public class OutOfCRUD {
         transacao.commit();
         sessao.close();
 
-        return resultado;
+        return resultado.size();
     }
     
-      
+    //20
+    public List<Jogador> getJogadoresPorSelecao(Selecao selecao) {
+        Selecao resultado = null;
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+
+        Query consulta = sessao.createQuery("from Selecao where id = :id");
+        consulta.setLong("id", selecao.getID());
+
+        resultado = (Selecao) consulta.uniqueResult();
+        transacao.commit();
+        sessao.flush();
+        sessao.close();
+        
+        return resultado.getJogador();
+    }
     
 }
