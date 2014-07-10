@@ -3,6 +3,7 @@ package crud;
 import java.util.List;
 import model.Copa;
 import model.Gol;
+import model.Jogador;
 import model.Jogo;
 import model.Pais;
 import model.Selecao;
@@ -106,6 +107,26 @@ public class OutOfCRUD {
         sessao.close();
 
         return resultado;
+    }
+    
+    //14
+    public List<Jogador> listarJogadoresSelecao(Selecao selecao){
+        List<Jogador> resultado = null;
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+        
+        Query consulta = sessao.createQuery("from Jogador where selecao=:idSelecao");
+        consulta.setLong("idSelecao", selecao.getID());
+        
+
+        resultado = (List<Jogador>) consulta.list();
+        transacao.commit();
+        sessao.close();
+
+        
+        
+        return resultado;
+        
     }
 
     

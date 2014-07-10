@@ -6,10 +6,12 @@
 
 package crud;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.Copa;
 import model.Fase;
 import model.Gol;
+import model.Jogador;
 import model.Jogo;
 import model.Pais;
 import model.Selecao;
@@ -80,9 +82,7 @@ public class OutOfCRUDTest {
         
         OutOfCRUD ooc = new OutOfCRUD();
         
-        List<Pais> result = pcrud.getList();
-        //List<Pais> result = ooc.listarPaisesCopa(copa);
-        
+        List<Pais> result = pcrud.getList();       
         for (Pais pais : result) {
             System.out.println("SAPO Pais = "+pais.getNome());
         }
@@ -237,4 +237,34 @@ public class OutOfCRUDTest {
         assertEquals(j1, list.get(0));
     }
     
+    //@Test
+    public void testarListarJogadoresSelecao(){
+        Jogador j1 = new Jogador();
+        j1.setNome("Hulk");
+        j1.setDataNascimento("12/06/1986");
+        j1.setNumero(10);
+        
+        Jogador j2 = new Jogador();
+        j2.setNome("David Luiz");
+        j2.setDataNascimento("22/04/1987");
+        j2.setNumero(7);
+
+        JogadorCRUD instance = new JogadorCRUD();
+        instance.create(j1);
+        instance.create(j2);
+
+        Selecao s1 = new Selecao();
+        s1.setAno(2014);
+        ArrayList<Jogador> list = new ArrayList<>();
+        list.add(j1);
+        list.add(j2);
+        s1.setJogador(list);
+        
+        OutOfCRUD ooc = new OutOfCRUD();
+        
+        List<Jogador> jogador = ooc.listarJogadoresSelecao(s1);
+        assertFalse(jogador.isEmpty());
+        assertEquals(j1, jogador.get(0));
+        assertEquals(j2, jogador.get(1));
+    }
 }
