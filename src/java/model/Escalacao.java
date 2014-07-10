@@ -50,15 +50,16 @@ public class Escalacao implements Serializable{
     public void setID(Long ID) {
         this.ID = ID;
     }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 13 * hash + Objects.hashCode(this.ID);
-        hash = 13 * hash + Objects.hashCode(this.selecao);
-        hash = 13 * hash + Objects.hashCode(this.jogadores);
-        
+        hash = 47 * hash + Objects.hashCode(this.ID);
+        hash = 47 * hash + Objects.hashCode(this.jogadores);
+        hash = 47 * hash + Objects.hashCode(this.selecao);
         return hash;
     }
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

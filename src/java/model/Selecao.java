@@ -109,17 +109,19 @@ public class Selecao implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.ID);
-        hash = 83 * hash + this.ano;
-        hash = 83 * hash + this.posicao;
-        hash = 83 * hash + Objects.hashCode(this.grupo);
-        hash = 83 * hash + Objects.hashCode(this.tecnico);
-        hash = 83 * hash + Objects.hashCode(this.pais);
-        hash = 83 * hash + Objects.hashCode(this.copa);
-        hash = 83 * hash + Objects.hashCode(this.jogador);
+        int hash = 3;
+        hash = 61 * hash + Objects.hashCode(this.ID);
+        hash = 61 * hash + this.ano;
+        hash = 61 * hash + this.posicao;
+        hash = 61 * hash + Objects.hashCode(this.grupo);
+        hash = 61 * hash + Objects.hashCode(this.tecnico);
+        hash = 61 * hash + Objects.hashCode(this.pais);
+        hash = 61 * hash + Objects.hashCode(this.copa);
+        hash = 61 * hash + Objects.hashCode(this.jogador);
         return hash;
     }
+
+   
 
     @Override
     public boolean equals(Object obj) {
