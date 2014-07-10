@@ -267,4 +267,30 @@ public class OutOfCRUDTest {
         assertEquals(j1, jogador.get(0));
         assertEquals(j2, jogador.get(1));
     }
+    //@Test
+    public void testarConsultarTecnicoSelecao(){
+        Tecnico t1 = new Tecnico();
+
+        t1.setNome("Felipão");
+        t1.setDataNascimento("22/02/1958");
+        
+        TecnicoCRUD tcrud = new TecnicoCRUD();        
+        tcrud.create(t1);  
+        
+        Selecao selecao = new Selecao();
+        selecao.setGrupo("A");
+        selecao.setAno(2014);
+        selecao.setTecnico(t1);
+        
+        SelecaoCRUD instance = new SelecaoCRUD();
+        instance.create(selecao);
+        
+        OutOfCRUD ooc = new OutOfCRUD();
+       
+        Tecnico t = ooc.consultarTecnicoSelecao(selecao);
+        
+        assertEquals(selecao.getTecnico(), t);
+        
+        
+    }
 }

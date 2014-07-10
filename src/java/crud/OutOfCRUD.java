@@ -131,21 +131,18 @@ public class OutOfCRUD {
     }
     //15
     
-    public List<Tecnico> listarTecnicoSelecao(Selecao selecao){
+    public Tecnico consultarTecnicoSelecao(Selecao selecao){
         
-      List<Tecnico> resultado = null;
+      Tecnico resultado = null;
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
         
         Query consulta = sessao.createQuery("from Tecnico  where selecao=:idSelecao");
-        consulta.setLong("idSelecao", selecao.getTecnico().getId());
-        
+        consulta.setLong("idSelecao", selecao.getID());
 
-        resultado = (List<Tecnico>) consulta.list();
+        resultado = (Tecnico) consulta.uniqueResult();
         transacao.commit();
         sessao.close();
-
-        
         
         return resultado;  
     }
