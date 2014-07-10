@@ -293,4 +293,60 @@ public class OutOfCRUDTest {
         
         
     }
+    
+    @Test
+    public void qtdDeParticipacoesEmCopa(){
+        System.out.println("qtdDeParticipacoesEmCopa");
+        PaisCRUD pcrud = new PaisCRUD();
+        TecnicoCRUD tcrud = new TecnicoCRUD();
+        CopaCRUD ccrud = new CopaCRUD();
+        
+        
+        Selecao s = new Selecao();
+        s.setAno(1930);
+        s.setPosicao(1);
+        s.setGrupo("A");
+        Tecnico t = new Tecnico();
+        s.setTecnico(t);
+        Pais p = new Pais();
+        p.setNome("Bósnia e Herzegovina");
+        s.setPais(p);
+        
+        Copa copa= new Copa();
+        copa.setAno(2015);
+        copa.setPais(p);
+        
+        s.setCopa(copa);
+        
+        Selecao s1 = new Selecao();
+        s1.setAno(1930);
+        s1.setPosicao(2);
+        s1.setGrupo("A");
+        s1.setCopa(copa);
+        Tecnico t1 = new Tecnico();
+        s1.setTecnico(t1);
+        Pais p1 = new Pais();
+        p1.setNome("Rússia");
+        s1.setPais(p1);
+        
+        pcrud.create(p);
+        pcrud.create(p1);
+        
+        ccrud.create(copa);
+        
+        tcrud.create(t);
+        tcrud.create(t1);
+        
+        SelecaoCRUD instance = new SelecaoCRUD();
+        instance.create(s);
+        instance.create(s1);
+        
+        List<Selecao> list = instance.getList();
+        
+        OutOfCRUD oocrud = new OutOfCRUD();
+        
+        List<Jogo> qtdDeParticipacoesEmCopa = oocrud.qtdDeParticipacoesEmCopa(s1);
+        
+        assertEquals(1, qtdDeParticipacoesEmCopa.size());
+    }
 }

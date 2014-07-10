@@ -147,6 +147,23 @@ public class OutOfCRUD {
         return resultado;  
     }
     
+    //37
+    public List<Jogo> qtdDeParticipacoesEmCopa(Selecao selecao) {
+        List<Jogo> resultado = null;
+
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+
+        Query consulta = sessao.createQuery("from Selecao as selecao where selecao.id = :idSelecao ");
+        consulta.setLong("idSelecao", selecao.getID());
+
+        resultado = (List<Jogo>) consulta.list();
+        transacao.commit();
+        sessao.close();
+
+        return resultado;
+    }
+    
       
     
 }
