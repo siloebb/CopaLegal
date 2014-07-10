@@ -7,6 +7,7 @@ import model.Jogador;
 import model.Jogo;
 import model.Pais;
 import model.Selecao;
+import model.Tecnico;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -128,7 +129,27 @@ public class OutOfCRUD {
         return resultado;
         
     }
-
+    //15
     
+    public List<Tecnico> listarTecnicoSelecao(Selecao selecao){
+        
+      List<Tecnico> resultado = null;
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+        
+        Query consulta = sessao.createQuery("from Tecnico  where selecao=:idSelecao");
+        consulta.setLong("idSelecao", selecao.getTecnico().getId());
+        
+
+        resultado = (List<Tecnico>) consulta.list();
+        transacao.commit();
+        sessao.close();
+
+        
+        
+        return resultado;  
+    }
+    
+      
     
 }
