@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
 /**
  *
  * @author Jéssica Magally
@@ -27,6 +25,8 @@ public class Gol implements Serializable {
     private Long id;
     @ManyToOne
     private Jogador jogador;
+    @ManyToOne
+    private Selecao selecao;
     @ManyToOne
     private Jogo jogo;
     private Long tempo;
@@ -72,13 +72,22 @@ public class Gol implements Serializable {
         this.foiContra = foiContra;
     }
 
+    public Selecao getSelecao() {
+        return selecao;
+    }
+
+    public void setSelecao(Selecao selecao) {
+        this.selecao = selecao;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.jogador);
-        hash = 29 * hash + Objects.hashCode(this.jogo);
-        hash = 29 * hash + Objects.hashCode(this.tempo);
-        hash = 29 * hash + (this.foiContra ? 1 : 0);
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.jogador);
+        hash = 67 * hash + Objects.hashCode(this.selecao);
+        hash = 67 * hash + Objects.hashCode(this.jogo);
+        hash = 67 * hash + Objects.hashCode(this.tempo);
+        hash = 67 * hash + (this.foiContra ? 1 : 0);
         return hash;
     }
 
@@ -94,6 +103,9 @@ public class Gol implements Serializable {
         if (!Objects.equals(this.jogador, other.jogador)) {
             return false;
         }
+        if (!Objects.equals(this.selecao, other.selecao)) {
+            return false;
+        }
         if (!Objects.equals(this.jogo, other.jogo)) {
             return false;
         }
@@ -105,5 +117,5 @@ public class Gol implements Serializable {
         }
         return true;
     }
-
+     
 }
