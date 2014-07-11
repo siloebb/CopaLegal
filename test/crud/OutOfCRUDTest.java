@@ -558,7 +558,7 @@ public class OutOfCRUDTest {
         Gol gol2 = new Gol();
         gol2.setTempo(3l);
         gol2.setFoiContra(false);
-        
+        gcrud.deleteAll();
         gcrud.create(gol);
         gcrud.create(gol2);
         
@@ -569,5 +569,32 @@ public class OutOfCRUDTest {
         
     }
 
-    
+    @Test
+    public void testQuantidadeDeJogos(){
+        JogoCRUD jcrud = new JogoCRUD();
+        SelecaoCRUD scrud = new SelecaoCRUD();
+        PaisCRUD pcrud = new PaisCRUD();
+        
+        Jogo jogo = new Jogo();
+        jogo.setAno(1234);
+        jogo.setData("23/12/1234");
+        
+        Selecao s1 = new Selecao();
+        s1.setAno(1930);
+        s1.setPosicao(2);
+        s1.setGrupo("A");
+        
+        Pais p1 = new Pais();
+        p1.setNome("Japão");
+        s1.setPais(p1);
+        jogo.setS1(s1);
+        pcrud.create(p1);
+        scrud.create(s1);
+        jcrud.create(jogo);
+        
+        OutOfCRUD ocrud = new OutOfCRUD();
+        int quantidadeDeJogos = ocrud.quantidadeDeJogos(p1);
+        
+        assertEquals(1, quantidadeDeJogos);
+    }
 }

@@ -233,6 +233,30 @@ public class OutOfCRUD {
             }
         }
     }
+    //24
+    public int quantidadeDeJogos(Pais pais){
+        List<Jogo> resultado = null;
+
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+
+        Query consulta = sessao.createQuery("from Jogo as jogo where jogo.s1.pais.id = :idpais ");
+        consulta.setLong("idpais", pais.getId());
+       
+        resultado = (List<Jogo>) consulta.list();
+        transacao.commit();
+        sessao.close();
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+        Query consulta2 = sessao.createQuery("from Jogo as jogo where jogo.s2.pais.id = :idpais2 ");
+        consulta2.setLong("idpais2", pais.getId());
+       
+        List list = consulta2.list();
+        transacao.commit();
+        sessao.close();
+
+        return resultado.size()+list.size();
+    }
     
     //20
     public List<Jogador> getJogadoresPorSelecao(Selecao selecao) {

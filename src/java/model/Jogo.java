@@ -8,9 +8,10 @@ package model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Entity; 
+import javax.persistence.Id; 
+import javax.persistence.ManyToOne; 
 /**
  *
  * @author Bianca
@@ -28,8 +29,10 @@ public class Jogo implements Serializable{
     private String local;
     private String horario;
     private Fase fase;
-
+    
+    @ManyToOne
     private Selecao s1;
+    @ManyToOne
     private Selecao s2;
 
 
