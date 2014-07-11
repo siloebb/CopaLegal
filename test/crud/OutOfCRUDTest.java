@@ -222,15 +222,11 @@ public class OutOfCRUDTest {
         
         Jogo j1= new Jogo();
         j1.setAno(2014);
-        j1.setLocal("Fonte nova");
-        j1.setSelecao1(s1);
-        j1.setSelecao2(s2);
+        j1.setLocal("Brasil");
         
         Jogo j2= new Jogo();
         j2.setAno(2014);
-        j2.setLocal("Mineirao");
-        j2.setSelecao1(s1);
-        j2.setSelecao2(s2);
+        j2.setLocal("Brasil");
                 
         JogoCRUD instance = new JogoCRUD();
         instance.create(j1);
@@ -238,13 +234,8 @@ public class OutOfCRUDTest {
         
         List<Jogo> list = instance.getList();
         
-        OutOfCRUD ooc = new OutOfCRUD();
-        
-        List<Jogo> jogos = ooc.listarJogosCopa(c);
-        assertFalse(jogos.isEmpty());
-      
-        assertEquals(j2.getLocal(), list.get(1).getLocal());
-        assertEquals(j1.getLocal(), list.get(0).getLocal());
+        assertEquals(j2, list.get(1));
+        assertEquals(j1, list.get(0));
     }
     
     //@Test
