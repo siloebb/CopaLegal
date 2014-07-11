@@ -8,17 +8,18 @@ package model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Entity; 
+import javax.persistence.Id; 
+import javax.persistence.OneToMany; 
 /**
  *
  * @author Bianca
  */
 @Entity
 public class Jogo implements Serializable{
-    private static final long serialVersionUID = -4887476046596007535L;
-   
+    private static final long serialVersionUID = 6449018641013069259L;
+    
     
     @Id @GeneratedValue
     private Long ID;
@@ -27,10 +28,11 @@ public class Jogo implements Serializable{
     private String local;
     private String horario;
     private Fase fase;
+    @OneToMany
+    private Selecao selecao1;
+    private Selecao selecao2;
 
-    //Falta implementar o relacionamento quando as demais classes forem adicionadas
-    //jogo ocorre entre duas seleções e
-    //jogo tem gols 
+    
     public Long getID() {
         return ID;
     }
@@ -79,15 +81,33 @@ public class Jogo implements Serializable{
         this.fase = fase;
     }
 
+    public Selecao getSelecao1() {
+        return selecao1;
+    }
+
+    public void setSelecao1(Selecao selecao1) {
+        this.selecao1 = selecao1;
+    }
+
+    public Selecao getSelecao2() {
+        return selecao2;
+    }
+
+    public void setSelecao2(Selecao selecao2) {
+        this.selecao2 = selecao2;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.ID);
-        hash = 37 * hash + Objects.hashCode(this.ano);
-        hash = 37 * hash + Objects.hashCode(this.data);
-        hash = 37 * hash + Objects.hashCode(this.local);
-        hash = 37 * hash + Objects.hashCode(this.horario);
-        hash = 37 * hash + Objects.hashCode(this.fase);
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.ID);
+        hash = 23 * hash + Objects.hashCode(this.ano);
+        hash = 23 * hash + Objects.hashCode(this.data);
+        hash = 23 * hash + Objects.hashCode(this.local);
+        hash = 23 * hash + Objects.hashCode(this.horario);
+        hash = 23 * hash + Objects.hashCode(this.fase);
+        hash = 23 * hash + Objects.hashCode(this.selecao1);
+        hash = 23 * hash + Objects.hashCode(this.selecao2);
         return hash;
     }
 
@@ -118,8 +138,15 @@ public class Jogo implements Serializable{
         if (this.fase != other.fase) {
             return false;
         }
+        if (!Objects.equals(this.selecao1, other.selecao1)) {
+            return false;
+        }
+        if (!Objects.equals(this.selecao2, other.selecao2)) {
+            return false;
+        }
         return true;
     }
+   
   
    
 }
