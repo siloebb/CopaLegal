@@ -102,7 +102,7 @@ public class OutOfCRUD {
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
 
-        Query consulta = sessao.createQuery("from Jogo as  where jogo jogo.ano = :idCopa ");
+        Query consulta = sessao.createQuery("from Jogo as jogo where jogo.ano = :idCopa ");
         consulta.setInteger("idCopa", copa.getAno());
 
         resultado = (List<Jogo>) consulta.list();

@@ -17,8 +17,9 @@ import javax.persistence.Entity;
  */
 @Entity
 public class Jogo implements Serializable{
-    private static final long serialVersionUID = -4887476046596007535L;
-   
+    private static final long serialVersionUID = -9050116611619577962L;
+       
+
     
     @Id @GeneratedValue
     private Long ID;
@@ -27,6 +28,10 @@ public class Jogo implements Serializable{
     private String local;
     private String horario;
     private Fase fase;
+
+    private Selecao s1;
+    private Selecao s2;
+
 
     //Falta implementar o relacionamento quando as demais classes forem adicionadas
     //jogo ocorre entre duas seleções e
@@ -79,15 +84,37 @@ public class Jogo implements Serializable{
         this.fase = fase;
     }
 
+
+    public Selecao getS1() {
+        return s1;
+    }
+
+    public void setS1(Selecao s1) {
+        this.s1 = s1;
+    }
+
+    public Selecao getS2() {
+        return s2;
+    }
+
+    public void setS2(Selecao s2) {
+        this.s2 = s2;
+    }
+
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.ID);
-        hash = 37 * hash + Objects.hashCode(this.ano);
-        hash = 37 * hash + Objects.hashCode(this.data);
-        hash = 37 * hash + Objects.hashCode(this.local);
-        hash = 37 * hash + Objects.hashCode(this.horario);
-        hash = 37 * hash + Objects.hashCode(this.fase);
+
+        hash = 79 * hash + Objects.hashCode(this.ID);
+        hash = 79 * hash + Objects.hashCode(this.ano);
+        hash = 79 * hash + Objects.hashCode(this.data);
+        hash = 79 * hash + Objects.hashCode(this.local);
+        hash = 79 * hash + Objects.hashCode(this.horario);
+        hash = 79 * hash + Objects.hashCode(this.fase);
+        hash = 79 * hash + Objects.hashCode(this.s1);
+        hash = 79 * hash + Objects.hashCode(this.s2);
+
         return hash;
     }
 
@@ -118,8 +145,15 @@ public class Jogo implements Serializable{
         if (this.fase != other.fase) {
             return false;
         }
+
+        if (!Objects.equals(this.s1, other.s1)) {
+            return false;
+        }
+        if (!Objects.equals(this.s2, other.s2)) {
+            return false;
+        }
+
         return true;
     }
-  
    
 }
