@@ -284,39 +284,18 @@ public class OutOfCRUD {
     }
     //32
     
-   /* public List<Jogo> ListarFinais(){
+    public List<Jogo> ListarFinais(){
         List<Jogo> resultado = null;
         
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
 
         Query consulta = sessao.createQuery("from Jogo where fase = 'Final'");
-        List<Jogo> jogos = (List<Jogo>) consulta.list();
+        resultado = (List<Jogo>) consulta.list();
         
-        Selecao sele;
-            for (Jogo jg : jogos) {
-                consulta = sessao.createQuery("from Selecao where id = :idSelecao");
-                
-                sele = (Selecao) consulta.uniqueResult();
-                jg.setSelecaoBySelecaoA(sele);
-            }
-            for (Jogo jg : jogos) {
-                consulta = sessao.createQuery("from Selecao where id = :parametro");
-                consulta.setInteger("parametro", jg.getSelecaoBySelecaoB().getId());
-                sele = (Selecao) consulta.uniqueResult();
-                jg.setSelecaoBySelecaoB(sele);
-            }
-
-            for (Jogo jg : jogos) {
-                resultado.add(jg);
-            }
-
-            transacao.commit();
-            return resultado;
         transacao.commit();
         sessao.close();
-
-        
+              
         return resultado;
-    }*/
+    }
 }
