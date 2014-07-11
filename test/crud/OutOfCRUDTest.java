@@ -190,7 +190,7 @@ public class OutOfCRUDTest {
         p2.setNome("Alemanha");
         
         Copa c = new Copa();
-        c.setAno(20140);
+        c.setAno(2014);
         c.setPais(p1);
  
         
@@ -223,20 +223,24 @@ public class OutOfCRUDTest {
         
         Jogo j1= new Jogo();
         j1.setAno(2014);
-        j1.setLocal("Brasil");
+        j1.setLocal("Mineirao");
         
         Jogo j2= new Jogo();
         j2.setAno(2014);
-        j2.setLocal("Brasil");
+        j2.setLocal("FonteNova");
                 
         JogoCRUD instance = new JogoCRUD();
         instance.create(j1);
         instance.create(j2);
         
-        List<Jogo> list = instance.getList();
         
-        assertEquals(j2, list.get(1));
-        assertEquals(j1, list.get(0));
+        OutOfCRUD ooCRUD = new OutOfCRUD();
+        List<Jogo> jogos = ooCRUD.listarJogosCopa(c);
+        
+                
+        assertEquals(j2.getLocal(), jogos.get(1).getLocal());
+        assertEquals(j1.getLocal(), jogos.get(0).getLocal());
+        
     }
     
     //@Test
@@ -544,4 +548,26 @@ public class OutOfCRUDTest {
         
         assertEquals(Long.valueOf(0), golRelampago.getTempo());
     }
+    @Test
+    public void testBolaFora(){
+        GolCRUD gcrud = new GolCRUD();
+        
+        Gol gol = new Gol();
+        gol.setTempo(0l);
+        gol.setFoiContra(true);
+        Gol gol2 = new Gol();
+        gol2.setTempo(3l);
+        gol2.setFoiContra(false);
+        
+        gcrud.create(gol);
+        gcrud.create(gol2);
+        
+        OutOfCRUD ocrud = new OutOfCRUD();
+        List<Gol> bolaFora = ocrud.bolaFora();
+        
+        assertEquals(1, bolaFora.size());
+        
+    }
+
+    
 }
