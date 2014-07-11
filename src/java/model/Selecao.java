@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -38,7 +39,7 @@ public class Selecao implements Serializable{
     private Pais pais;
     @ManyToOne
     private Copa copa;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="selecao_jogador", joinColumns={@JoinColumn(name="selecao_ID")})
     private List<Jogador> jogador;
 

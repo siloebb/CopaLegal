@@ -169,7 +169,7 @@ public class OutOfCRUD {
     }
     
     //37
-    public List<Jogo> qtdDeParticipacoesEmCopa(Selecao selecao) {
+    public int qtdDeParticipacoesEmCopa(Selecao selecao) {
         List<Jogo> resultado = null;
 
         sessao = HibernateUtil.getSessionFactory().openSession();
@@ -182,9 +182,54 @@ public class OutOfCRUD {
         transacao.commit();
         sessao.close();
 
-        return resultado;
+        return resultado.size();
     }
     
-      
+    //20
+    public List<Jogador> getJogadoresPorSelecao(Selecao selecao) {
+        Selecao resultado = null;
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+
+        Query consulta = sessao.createQuery("from Selecao where id = :id");
+        consulta.setLong("id", selecao.getID());
+
+        resultado = (Selecao) consulta.uniqueResult();
+        transacao.commit();
+        sessao.flush();
+        sessao.close();
+        
+        return resultado.getJogador();
+    }
     
+    
+    //22
+    public List<Gol> listarGolsPartida(Jogo jogo){
+        List<Gol> resultado = null;
+        sessao = HibernateUtil.getSessionFactory().openSession();
+
+            Query consulta = sessao.createQuery("from Gol AS gol WHERE gol.jogo.id = :id");
+            consulta.setLong("id", jogo.getID());
+            transacao = sessao.beginTransaction();
+            resultado = (List<Gol>) consulta.list();
+            
+            Selecao sele;
+            Jogador joga;
+            for (Gol gol1 : resultado) {
+                consulta = sessao.createQuery("from Selecao where id = :id");
+                consulta.setLong("id", gol1.getSelecao().getID());
+                sele = (Selecao) consulta.uniqueResult();
+                gol1.setSelecao(sele);
+            }
+            for (Gol goll : resultado) {
+                consulta = sessao.createQuery("from Jogador where id=:parametro");
+                consulta.setLong("id", goll.getJogador().getID());
+                joga = (Jogador) consulta.uniqueResult();
+                goll.setJogador(joga);
+            }
+
+            transacao.commit();
+            return resultado;
+            
+    }
 }
