@@ -426,7 +426,7 @@ public class OutOfCRUDTest {
         assertEquals(3, jogadoresPorSelecao.size());
     }
     
-}
+
     @Test
     public void testListaSubstituicoes(){
         PaisCRUD pcrud = new PaisCRUD();
