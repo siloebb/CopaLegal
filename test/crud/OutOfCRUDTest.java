@@ -16,6 +16,7 @@ import model.Jogo;
 import model.Pais;
 import model.Posicao;
 import model.Selecao;
+import model.Substituicao;
 import model.Tecnico;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -425,4 +426,109 @@ public class OutOfCRUDTest {
         assertEquals(3, jogadoresPorSelecao.size());
     }
     
+}
+    @Test
+    public void testListaSubstituicoes(){
+        PaisCRUD pcrud = new PaisCRUD();
+        TecnicoCRUD tcrud = new TecnicoCRUD();
+        CopaCRUD ccrud = new CopaCRUD();
+        JogadorCRUD jcrud = new JogadorCRUD();
+        SubstituicaoCRUD scrud = new SubstituicaoCRUD();
+        List<Jogador> jog = new ArrayList<Jogador>();
+        List<Jogador> jog2 = new ArrayList<Jogador>();
+        JogoCRUD jogcrud = new JogoCRUD();
+        
+        Jogo jogo = new Jogo();
+        jogo.setAno(2344);
+        jogo.setData("23/12/2344");
+        
+        Selecao s = new Selecao();
+        s.setAno(1930);
+        s.setPosicao(1);
+        s.setGrupo("A");
+        Tecnico t = new Tecnico();
+        s.setTecnico(t);
+        Pais p = new Pais();
+        p.setNome("Bósnia e Herzegovina");
+        s.setPais(p);
+        
+        Jogador j = new Jogador();
+        j.setCamisa(40);
+        j.setDataNascimento("23/01/1920");
+        j.setNome("kaehau");
+        
+        Jogador j2 = new Jogador();
+        j2.setCamisa(40);
+        j2.setDataNascimento("23/01/1920");
+        j2.setNome("kaka");
+        jog.add(j);
+        jog.add(j2);
+        s.setJogador(jog);
+        
+        Copa copa= new Copa();
+        copa.setAno(3889);
+        copa.setPais(p);
+        
+        s.setCopa(copa);
+        
+        Selecao s1 = new Selecao();
+        s1.setAno(1930);
+        s1.setPosicao(2);
+        s1.setGrupo("A");
+        s1.setCopa(copa);
+        Tecnico t1 = new Tecnico();
+        s1.setTecnico(t1);
+        Pais p1 = new Pais();
+        p1.setNome("Rússia");
+        s1.setPais(p1);
+        
+        Jogador j3 = new Jogador();
+        j3.setCamisa(40);
+        j3.setDataNascimento("23/01/1920");
+        j3.setNome("Benjamin");
+        
+        Jogador j4 = new Jogador();
+        j4.setCamisa(40);
+        j4.setDataNascimento("23/01/1920");
+        j4.setNome("Bittencourt");
+        jog2.add(j3);
+        jog2.add(j4);
+        s1.setJogador(jog2);
+        
+        pcrud.create(p);
+        pcrud.create(p1);
+        jcrud.create(j);
+        jcrud.create(j2);
+        jcrud.create(j3);
+        jcrud.create(j4);
+        ccrud.create(copa);
+        
+        tcrud.create(t);
+        tcrud.create(t1);
+        
+        SelecaoCRUD instance = new SelecaoCRUD();
+        instance.create(s);
+        instance.create(s1);
+        
+        jogcrud.create(jogo);
+       Substituicao subs = new Substituicao();
+       subs.setJogadorEntrou(j);
+       subs.setJogadorSaiu(j2);
+       
+       Substituicao subs2 = new Substituicao();
+       subs2.setJogadorEntrou(j3);
+       subs2.setJogadorSaiu(j4);
+       subs.setJogo(jogo);
+       subs2.setJogo(jogo);
+       scrud.create(subs);
+       scrud.create(subs2);
+       
+       OutOfCRUD ocrud = new OutOfCRUD();
+        List<String> listaSubstituicoes = ocrud.listaSubstituicoes(jogo);
+        
+        assertEquals(2, listaSubstituicoes.size());
+       
+        
+        
+    }
 }
