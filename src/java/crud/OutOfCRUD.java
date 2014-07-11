@@ -1,5 +1,6 @@
 package crud;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.Copa;
 import model.Gol;
@@ -7,6 +8,7 @@ import model.Jogador;
 import model.Jogo;
 import model.Pais;
 import model.Selecao;
+import model.Substituicao;
 import model.Tecnico;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -109,7 +111,26 @@ public class OutOfCRUD {
 
         return resultado;
     }
-    
+    //21
+    public List<String> listaSubstituicoes(Jogo B){
+        List<Substituicao> resultado = null;
+
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+
+        Query consulta = sessao.createQuery("from Substituicao as substituicao where substituicao.jogo.id = :idjogo ");
+        consulta.setLong("idjogo", B.getID());
+        List<String> a = new ArrayList<String>();
+        resultado = (List<Substituicao>) consulta.list();
+        transacao.commit();
+        sessao.close();
+        for (Substituicao substituicao : resultado) {
+            String nomeBonito =  "Sai:" + substituicao.getJogadorSaiu() + "Entra:" + substituicao.getJogadorEntrou();
+            a.add(nomeBonito);
+        }
+        return a;
+       
+    }
     //14
     public List<Jogador> listarJogadoresSelecao(Selecao selecao){
         List<Jogador> resultado = null;
