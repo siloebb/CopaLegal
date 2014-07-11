@@ -302,7 +302,24 @@ public class OutOfCRUD {
             }
 
             transacao.commit();
+            sessao.close();
             return resultado;
             
+    }
+    //32
+    
+    public List<Jogo> ListarFinais(){
+        List<Jogo> resultado = null;
+        
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+
+        Query consulta = sessao.createQuery("from Jogo where fase = 'Final'");
+        resultado = (List<Jogo>) consulta.list();
+        
+        transacao.commit();
+        sessao.close();
+              
+        return resultado;
     }
 }
