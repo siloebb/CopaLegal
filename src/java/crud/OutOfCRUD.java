@@ -210,6 +210,29 @@ public class OutOfCRUD {
 
         return resultado.size();
     }
+    //34
+    public List<Gol> bolaFora(){
+        List<Gol> resultado = null;
+        try {
+            sessao = HibernateUtil.getInstance().getSessionFactory().openSession();
+
+            Query consulta = sessao.createQuery("from Gol as gol where gol.foiContra = true");
+            
+            transacao = sessao.beginTransaction();
+            resultado = (List<Gol>) consulta.list();
+            transacao.commit();
+            return resultado;
+        } catch (HibernateException e) {
+            System.err.println("Nao foi possivel listar os objetos. Erro: " + e.getMessage());
+            throw new HibernateException(e);
+        } finally {
+            try {
+                sessao.close();
+            } catch (Throwable e) {
+                System.err.println("Erro ao fechar operacao de listagem. Mensagem: " + e.getMessage());
+            }
+        }
+    }
     
     //20
     public List<Jogador> getJogadoresPorSelecao(Selecao selecao) {

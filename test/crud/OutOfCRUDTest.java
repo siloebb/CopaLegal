@@ -544,4 +544,26 @@ public class OutOfCRUDTest {
         
         assertEquals(Long.valueOf(0), golRelampago.getTempo());
     }
+    @Test
+    public void testBolaFora(){
+        GolCRUD gcrud = new GolCRUD();
+        
+        Gol gol = new Gol();
+        gol.setTempo(0l);
+        gol.setFoiContra(true);
+        Gol gol2 = new Gol();
+        gol2.setTempo(3l);
+        gol2.setFoiContra(false);
+        
+        gcrud.create(gol);
+        gcrud.create(gol2);
+        
+        OutOfCRUD ocrud = new OutOfCRUD();
+        List<Gol> bolaFora = ocrud.bolaFora();
+        
+        assertEquals(1, bolaFora.size());
+        
+    }
+
+    
 }
