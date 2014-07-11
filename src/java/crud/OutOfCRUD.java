@@ -131,6 +131,32 @@ public class OutOfCRUD {
         return a;
        
     }
+    //44
+    public Gol golRelampago(){
+        Gol resultado = null;
+
+        try {
+            sessao = HibernateUtil.getInstance().getSessionFactory().openSession();
+
+            Query consulta = sessao.createQuery("from Gol as gol order by tempo asc ");
+            consulta.setMaxResults(1);
+            transacao = sessao.beginTransaction();
+
+            resultado = (Gol) consulta.uniqueResult();
+            transacao.commit();
+            return resultado;
+
+        } catch (HibernateException e) {
+            System.err.println("Nao foi possivel buscar o objeto. Erro: " + e.getMessage());
+        } finally {
+            try {
+                sessao.close();
+            } catch (Throwable e) {
+                System.err.println("Erro ao fechar operacao de busca. Mensagem: " + e.getMessage());
+            }
+        }
+        return resultado;
+    }
     //14
     public List<Jogador> listarJogadoresSelecao(Selecao selecao){
         List<Jogador> resultado = null;

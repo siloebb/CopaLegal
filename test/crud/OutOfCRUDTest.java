@@ -531,4 +531,21 @@ public class OutOfCRUDTest {
         
         
     }
+    @Test
+    public void testGolRelmpago(){
+        GolCRUD gcrud = new GolCRUD();
+        
+        Gol gol = new Gol();
+        gol.setTempo(0l);
+        Gol gol2 = new Gol();
+        gol2.setTempo(3l);
+        
+        gcrud.create(gol);
+        gcrud.create(gol2);
+        
+        OutOfCRUD ocrud = new OutOfCRUD();
+        Gol golRelampago = ocrud.golRelampago();
+        
+        assertEquals(Long.valueOf(0), golRelampago.getTempo());
+    }
 }
