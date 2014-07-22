@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Copa</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:outputLabel for="ano" value="Ano que aconteceu: "/>
+            <p:spinner id="ano" value="#{copaController.copa.ano}" /><br/>
+            <p:outputLabel for="observacao" value="Observações: "/>
+            <p:inputText id="observacao" value="#{copaController.copa.observacao}" /><br/>
+            <p:outputLabel for="pais" value="País onde ocorreu: "/>
+            <p:selectOneMenu id="pais" value="#{copaController.paisSelecionado}">
+                <f:selectItems value="#{copaController.paises}" var="paisC" itemLabel="#{paisC.nome}" 
+                               itemValue="#{paisC.id}" />
+            </p:selectOneMenu><br/>
+            <p:commandButton value="Cadastrar" action="#{copaController.cadastrarCopa()}" update="@all" />
+
+        </h:form>
+
+        <br/>
+        <br/>
+        <br/>
+        Tabela de copa
+        <p:dataTable id="tabela" var="copa" value="#{copaController.listaCopas}" paginator="true" rows="10" >
+            <p:column headerText="Ano" sortBy="#{copa.ano}">
+                <h:outputText value="#{copa.ano}"/>
+            </p:column>
+            <p:column headerText="Observação" sortBy="#{copa.observacao}" >
+                <h:outputText value="#{copa.observacao}"/>
+            </p:column>
+            <p:column headerText="País" sortBy="#{copa.pais.nome}" >
+                <h:outputText value="#{copa.pais.nome}"/>
+            </p:column>
+        </p:dataTable>
+
+    </h:body>
+</html>
+

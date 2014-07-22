@@ -23,16 +23,16 @@
             <br/>
             Tabela de paises
             <p:dataTable id="tabela" var="pais" value="#{paisController.listaPaises}" paginator="true" rows="10" >
-                <p:column headerText="Id">
+                <p:column headerText="Id" sortBy="#{pais.id}">
                     <h:outputText value="#{pais.id}"/>
                 </p:column>
-                <p:column headerText="Nome" >
+                <p:column headerText="Nome" sortBy="#{pais.nome}" >
                     <h:outputText value="#{pais.nome}"/>
                 </p:column>
-                <p:column headerText="Sigla" >
+                <p:column headerText="Sigla" sortBy="#{pais.sigla}">
                     <h:outputText value="#{pais.sigla}"/>
                 </p:column>
-                <p:column headerText="Continente" >
+                <p:column headerText="Continente" sortBy="#{pais.continente}">
                     <h:outputText value="#{pais.continente}"/>
                 </p:column>
             </p:dataTable>
