@@ -7,41 +7,40 @@
         <title>País</title>
     </h:head>
     <h:body>
-        Cadastro de Paises
-        <h:form>
-            <p:outputLabel for="nome" value="Nome: "/>
-            <p:inputText id="nome" value="#{paisController.pais.nome}" /><br />
-            <p:outputLabel for="sigla" value="Sigla: "/>
-            <p:inputText id="sigla" value="#{paisController.pais.sigla}" /><br />
-            <p:outputLabel for="continente" value="Continente: "/>
-            <p:inputText id="continente" value="#{paisController.pais.continente}" /><br />
-            <p:commandButton value="Cadastrar" action="#{paisController.cadastrarPais}" update="@all"/>
-        </h:form>
+        <p:fieldset legend="Formulário" style="margin-bottom:20px">
+            <h:form>
+                <p:outputLabel for="nome" value="Nome: "/>
+                <p:inputText id="nome" value="#{paisController.pais.nome}" /><br />
+                <p:outputLabel for="sigla" value="Sigla: "/>
+                <p:inputText id="sigla" value="#{paisController.pais.sigla}" /><br />
+                <p:outputLabel for="continente" value="Continente: "/>
+                <p:inputText id="continente" value="#{paisController.pais.continente}" /><br />
+                <p:commandButton value="Cadastrar" action="#{paisController.cadastrarPais}" update="@all"/>
+            </h:form>
+        </p:fieldset>
 
         <br/>
-        <br/>
-        <br/>
-        Tabela de paises
-        <h:form>
-            <p:dataTable id="tabela" var="pais" value="#{paisController.listaPaises}" paginator="true" rows="10" >
-                <p:column headerText="Id" sortBy="#{pais.id}">
-                    <h:outputText value="#{pais.id}"/>
-                </p:column>
-                <p:column headerText="Nome" sortBy="#{pais.nome}" >
-                    <h:outputText value="#{pais.nome}"/>
-                </p:column>
-                <p:column headerText="Sigla" sortBy="#{pais.sigla}">
-                    <h:outputText value="#{pais.sigla}"/>
-                </p:column>
-                <p:column headerText="Continente" sortBy="#{pais.continente}">
-                    <h:outputText value="#{pais.continente}"/>
-                </p:column>
-                <p:column headerText="" >
-                    <p:commandButton  actionListener="#{paisController.excluirPais(pais.id)}" update="@all" value="Excluir"/>
-                </p:column>
-            </p:dataTable>
-        </h:form>
-
+        <p:fieldset legend="Tabela" style="margin-bottom:20px">
+            <h:form>
+                <p:dataTable id="tabela" var="pais" value="#{paisController.listaPaises}" paginator="true" rows="10" >
+                    <p:column headerText="Id" sortBy="#{pais.id}">
+                        <h:outputText value="#{pais.id}"/>
+                    </p:column>
+                    <p:column headerText="Nome" sortBy="#{pais.nome}" >
+                        <h:outputText value="#{pais.nome}"/>
+                    </p:column>
+                    <p:column headerText="Sigla" sortBy="#{pais.sigla}">
+                        <h:outputText value="#{pais.sigla}"/>
+                    </p:column>
+                    <p:column headerText="Continente" sortBy="#{pais.continente}">
+                        <h:outputText value="#{pais.continente}"/>
+                    </p:column>
+                    <p:column headerText="" >
+                        <p:commandButton  actionListener="#{paisController.excluirPais(pais.id)}" update="@all" value="Excluir"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:fieldset>
 
     </h:body>
 </html>

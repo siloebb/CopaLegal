@@ -8,40 +8,41 @@
         <title>Copa</title>
     </h:head>
     <h:body>
-        <h:form>
-            <p:outputLabel for="ano" value="Ano que aconteceu: "/>
-            <p:spinner id="ano" value="#{copaController.copa.ano}" /><br/>
-            <p:outputLabel for="observacao" value="Observações: "/>
-            <p:inputText id="observacao" value="#{copaController.copa.observacao}" /><br/>
-            <p:outputLabel for="pais" value="País onde ocorreu: "/>
-            <p:selectOneMenu id="pais" value="#{copaController.paisSelecionado}">
-                <f:selectItems value="#{copaController.paises}" var="paisC" itemLabel="#{paisC.nome}" 
-                               itemValue="#{paisC.id}" />
-            </p:selectOneMenu><br/>
-            <p:commandButton value="Cadastrar" action="#{copaController.cadastrarCopa()}" update="@all" />
+        <p:fieldset legend="Formulário" style="margin-bottom:20px">
+            <h:form>
+                <p:outputLabel for="ano" value="Ano que aconteceu: "/>
+                <p:spinner id="ano" value="#{copaController.copa.ano}" /><br/>
+                <p:outputLabel for="observacao" value="Observações: "/>
+                <p:inputText id="observacao" value="#{copaController.copa.observacao}" /><br/>
+                <p:outputLabel for="pais" value="País onde ocorreu: "/>
+                <p:selectOneMenu id="pais" value="#{copaController.paisSelecionado}">
+                    <f:selectItems value="#{copaController.paises}" var="paisC" itemLabel="#{paisC.nome}" 
+                                   itemValue="#{paisC.id}" />
+                </p:selectOneMenu><br/>
+                <p:commandButton value="Cadastrar" action="#{copaController.cadastrarCopa()}" update="@all" />
+            </h:form>
+        </p:fieldset>
 
-        </h:form>
+        <br/>
+        <p:fieldset legend="Tabela" style="margin-bottom:20px">
+            <h:form>
+                <p:dataTable id="tabela" var="copa" value="#{copaController.listaCopas}" paginator="true" rows="10" >
+                    <p:column headerText="Ano" sortBy="#{copa.ano}">
+                        <h:outputText value="#{copa.ano}"/>
+                    </p:column>
+                    <p:column headerText="Observação" sortBy="#{copa.observacao}" >
+                        <h:outputText value="#{copa.observacao}"/>
+                    </p:column>
+                    <p:column headerText="País" sortBy="#{copa.pais.nome}" >
+                        <h:outputText value="#{copa.pais.nome}"/>
+                    </p:column>
+                    <p:column headerText="" >
+                        <p:commandButton  actionListener="#{copaController.excluirCopa(copa.ano)}" update="@all" value="Excluir"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:fieldset>
 
-        <br/>
-        <br/>
-        <br/>
-        Tabela de copa
-        <h:form>
-            <p:dataTable id="tabela" var="copa" value="#{copaController.listaCopas}" paginator="true" rows="10" >
-                <p:column headerText="Ano" sortBy="#{copa.ano}">
-                    <h:outputText value="#{copa.ano}"/>
-                </p:column>
-                <p:column headerText="Observação" sortBy="#{copa.observacao}" >
-                    <h:outputText value="#{copa.observacao}"/>
-                </p:column>
-                <p:column headerText="País" sortBy="#{copa.pais.nome}" >
-                    <h:outputText value="#{copa.pais.nome}"/>
-                </p:column>
-                <p:column headerText="" >
-                    <p:commandButton  actionListener="#{copaController.excluirCopa(copa.ano)}" update="@all" value="Excluir"/>
-                </p:column>
-            </p:dataTable>
-        </h:form>
 
     </h:body>
 </html>
