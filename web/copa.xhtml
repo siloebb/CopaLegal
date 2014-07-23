@@ -26,17 +26,22 @@
         <br/>
         <br/>
         Tabela de copa
-        <p:dataTable id="tabela" var="copa" value="#{copaController.listaCopas}" paginator="true" rows="10" >
-            <p:column headerText="Ano" sortBy="#{copa.ano}">
-                <h:outputText value="#{copa.ano}"/>
-            </p:column>
-            <p:column headerText="Observação" sortBy="#{copa.observacao}" >
-                <h:outputText value="#{copa.observacao}"/>
-            </p:column>
-            <p:column headerText="País" sortBy="#{copa.pais.nome}" >
-                <h:outputText value="#{copa.pais.nome}"/>
-            </p:column>
-        </p:dataTable>
+        <h:form>
+            <p:dataTable id="tabela" var="copa" value="#{copaController.listaCopas}" paginator="true" rows="10" >
+                <p:column headerText="Ano" sortBy="#{copa.ano}">
+                    <h:outputText value="#{copa.ano}"/>
+                </p:column>
+                <p:column headerText="Observação" sortBy="#{copa.observacao}" >
+                    <h:outputText value="#{copa.observacao}"/>
+                </p:column>
+                <p:column headerText="País" sortBy="#{copa.pais.nome}" >
+                    <h:outputText value="#{copa.pais.nome}"/>
+                </p:column>
+                <p:column headerText="" >
+                    <p:commandButton  actionListener="#{copaController.excluirCopa(copa.ano)}" update="@all" value="Excluir"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
 
     </h:body>
 </html>

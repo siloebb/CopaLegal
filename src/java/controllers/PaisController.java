@@ -1,5 +1,3 @@
-
-
 package controllers;
 
 import crud.PaisCRUD;
@@ -15,7 +13,7 @@ import model.Pais;
  */
 @ManagedBean
 public class PaisController {
-    
+
     Pais pais;
     List<Pais> listaPaises;
 
@@ -39,19 +37,31 @@ public class PaisController {
     public void setListaPaises(List<Pais> listaPaises) {
         this.listaPaises = listaPaises;
     }
-    
-    public void cadastrarPais(){
+
+    public void cadastrarPais() {
         PaisCRUD pcrud = new PaisCRUD();
         pcrud.create(pais);
         FacesMessage message = new FacesMessage("Cadastrado com sucesso");
         FacesContext.getCurrentInstance().addMessage(null, message);
         listaPaises = iniciarListaPaises();
     }
-    
-    public List<Pais> iniciarListaPaises(){
+
+    public List<Pais> iniciarListaPaises() {
         PaisCRUD pcrud = new PaisCRUD();
         List<Pais> list = pcrud.getList();
         return list;
     }
-    
+
+    public void excluirPais(Long id) {
+        PaisCRUD pcrud = new PaisCRUD();
+        Pais ready = pcrud.ready(id);
+        try {
+            pcrud.delete(ready);
+            listaPaises = iniciarListaPaises();
+        } catch (Exception ex) {
+            FacesMessage message = new FacesMessage("Erro ao excluir! Verifique se o dado não está dependente!");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+    }
+
 }

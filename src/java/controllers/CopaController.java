@@ -83,4 +83,16 @@ public class CopaController {
         listaCopas = iniciarListaCopa();
     }
     
+    public void excluirCopa(int ano) {
+        CopaCRUD pcrud = new CopaCRUD();
+        Copa ready = pcrud.ready(ano);
+        try {
+            pcrud.delete(ready);
+            listaCopas = iniciarListaCopa();
+        } catch (Exception ex) {
+            FacesMessage message = new FacesMessage("Erro ao excluir! Verifique se o dado não está dependente!");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+    }
+    
 }

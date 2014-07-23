@@ -16,12 +16,13 @@
             <p:outputLabel for="continente" value="Continente: "/>
             <p:inputText id="continente" value="#{paisController.pais.continente}" /><br />
             <p:commandButton value="Cadastrar" action="#{paisController.cadastrarPais}" update="@all"/>
+        </h:form>
 
-
-            <br/>
-            <br/>
-            <br/>
-            Tabela de paises
+        <br/>
+        <br/>
+        <br/>
+        Tabela de paises
+        <h:form>
             <p:dataTable id="tabela" var="pais" value="#{paisController.listaPaises}" paginator="true" rows="10" >
                 <p:column headerText="Id" sortBy="#{pais.id}">
                     <h:outputText value="#{pais.id}"/>
@@ -35,8 +36,12 @@
                 <p:column headerText="Continente" sortBy="#{pais.continente}">
                     <h:outputText value="#{pais.continente}"/>
                 </p:column>
+                <p:column headerText="" >
+                    <p:commandButton  actionListener="#{paisController.excluirPais(pais.id)}" update="@all" value="Excluir"/>
+                </p:column>
             </p:dataTable>
         </h:form>
+
 
     </h:body>
 </html>
