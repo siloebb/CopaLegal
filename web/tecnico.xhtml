@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+     <h:head>
+        <title>Tecnico</title>
+    </h:head>
+    <h:body>
+        <p:fieldset legend="Formulário" style="margin-bottom:20px">
+            <h:form>
+                <p:outputLabel for="nome" value="Nome do Técnico: "/>
+                <p:inputText id="nome" value="#{tecnicoController.tecnico.nome}" /><br/>
+                <p:outputLabel for="dataNascimento" value="Data de Nascimento: "/>
+                <p:inputText id="dataNascimento" value="#{tecnicoController.tecnico.dataNascimento}" /><br/>
+                
+                <p:commandButton value="Cadastrar" action="#{tecnicoController.cadastrarTecnico()}" update="@all" />
+            </h:form>
+        </p:fieldset>
+
+        <br/>
+        <p:fieldset legend="Tabela" style="margin-bottom:20px">
+            <h:form>
+                <p:dataTable id="tabela" var="tecnico" value="#{tecnicoController.listasTecnico}" paginator="true" rows="10" >
+                    <p:column headerText="Nome" sortBy="#{tecnico.nome}">
+                        <h:outputText value="#{tecnico.ano}"/>
+                    </p:column>
+                    <p:column headerText="Data de Nascimento" sortBy="#{tecnico.dataNascimento}" >
+                        <h:outputText value="#{tecnico.dataNascimento}"/>
+                    </p:column>
+                    
+                    <p:column headerText="" >
+                        <p:commandButton  actionListener="#{tecnicoController.excluirTecnico(tecnico.nome)}" update="@all" value="Excluir"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:fieldset>
+
+
+    </h:body>
+</html>
