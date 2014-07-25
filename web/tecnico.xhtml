@@ -27,16 +27,19 @@ and open the template in the editor.
         <br/>
         <p:fieldset legend="Tabela" style="margin-bottom:20px">
             <h:form>
-                <p:dataTable id="tabela" var="tecnico" value="#{tecnicoController.listasTecnico}" paginator="true" rows="10" >
-                    <p:column headerText="Nome" sortBy="#{tecnico.nome}">
-                        <h:outputText value="#{tecnico.ano}"/>
+                <p:dataTable id="tabela" var="tecnico" value="#{tecnicoController.listasTecnicos}" paginator="true" rows="10" >
+                    <p:column headerText="Id" sortBy="#{tecnico.id}">
+                        <h:outputText value="#{tecnico.id}"/>
                     </p:column>
-                    <p:column headerText="Data de Nascimento" sortBy="#{tecnico.dataNascimento}" >
+                    <p:column headerText="Nome" sortBy="#{tecnico.nome}" >
+                        <h:outputText value="#{tecnico.nome}"/>
+                    </p:column>
+                    <p:column headerText="Data de Nascimento" sortBy="#{tecnico.dataNascimento}">
                         <h:outputText value="#{tecnico.dataNascimento}"/>
                     </p:column>
                     
                     <p:column headerText="" >
-                        <p:commandButton  actionListener="#{tecnicoController.excluirTecnico(tecnico.nome)}" update="@all" value="Excluir"/>
+                        <p:commandButton  actionListener="#{tecnicoController.excluirTecnico(tecnico.id)}" update="@all" value="Excluir"/>
                     </p:column>
                 </p:dataTable>
             </h:form>
