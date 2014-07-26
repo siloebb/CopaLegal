@@ -10,7 +10,7 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
      <h:head>
-        <title>Tecnico</title>
+        <title>Jogador</title>
     </h:head>
     <h:body>
         <p:fieldset legend="Formulário" style="margin-bottom:20px">
@@ -21,9 +21,9 @@ and open the template in the editor.
                 <p:outputLabel for="dataNascimento" value="Data de Nascimento: "/>
                 <p:inputText id="dataNascimento" value="#{jogadorController.jogador.dataNascimento}" />
                 <br/>
-                <p:outputLabel for="posicao" value="Posição: "/>
+               <!-- <p:outputLabel for="posicao" value="Posição: "/>
                 <p:inputText id="posicao" value="#{jogadorController.jogador.posicao}" />
-                <br/>
+                <br/> -->
                 <p:outputLabel for="numero" value="Número: "/>
                 <p:spinner id="numero" value="#{jogadorController.jogador.numero}" />
                 <br/>               
@@ -35,7 +35,7 @@ and open the template in the editor.
         <p:fieldset legend="Tabela" style="margin-bottom:20px">
             <h:form>
                 <p:dataTable id="tabela" var="jogador" value="#{jogadorController.listaJogadores}" paginator="true" rows="10" >
-                    <p:column headerText="Id" sortBy="#{jogador.id}">
+                    <p:column headerText="Id" sortBy="#{jogador.ID}">
                         <h:outputText value="#{jogador.ID}"/>
                     </p:column>
                     <p:column headerText="Nome" sortBy="#{jogador.nome}" >
@@ -44,9 +44,9 @@ and open the template in the editor.
                     <p:column headerText="Data de Nascimento" sortBy="#{jogador.dataNascimento}">
                         <h:outputText value="#{jogador.dataNascimento}"/>
                     </p:column>
-                    <p:column headerText="Posição" sortBy="#{jogador.posicao}" >
+                  <!--  <p:column headerText="Posição" sortBy="#{jogador.posicao}" >
                         <h:outputText value="#{jogador.posicao}"/>
-                    </p:column>
+                    </p:column> -->
                     <p:column headerText="Número" sortBy="#{jogador.numero}">
                         <h:outputText value="#{jogador.numero}"/>
                     </p:column>
