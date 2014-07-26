@@ -7,13 +7,11 @@
 package controllers;
 
 import crud.JogadorCRUD;
-import crud.PaisCRUD;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import model.Jogador;
-import model.Pais;
 
 /**
  *
@@ -45,7 +43,7 @@ public class JogadorController {
         this.listaJogadores = listaJogadores;
     }
     
-    public void cadastrarPais() {
+    public void cadastrarJogador() {
         JogadorCRUD jcrud = new JogadorCRUD();
         jcrud.create(jogador);
         FacesMessage message = new FacesMessage("Cadastrado com sucesso");

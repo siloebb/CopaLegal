@@ -10,8 +10,6 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import static org.hibernate.type.TypeFactory.serializable;
-
 /**
  *
  * @author Bianca
