@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Gol</title>
+    </h:head>
+    <h:body>
+        <p:fieldset legend="Formulário" style="margin-bottom:20px">
+            <h:form>
+                <p:outputLabel for="tempo" value="Tempo que o gol aconteceu: "/>
+                <p:spinner id="tempo" value="#{golController.gol.tempo}" /><br/>
+                <p:outputLabel for="foiContra" value="Gol Contra: "/>
+                <p:inputText id="foiContra" value="#{golController.gol.foiContra}" /><br/>
+                <p:outputLabel for="jogador" value="Joador que marcou o gol: "/>
+                <p:selectOneMenu id="jogador" value="#{golController.jogadorSelecionado}">
+                    <f:selectItems value="#{golController.jogadores}" var="jogadorG" itemLabel="#{jogadorG.nome}" 
+                                   itemValue="#{jogadorG.ID}" />
+                </p:selectOneMenu><br/>
+                <p:outputLabel for="selecao" value="Seleção: "/>
+                <p:selectOneMenu id="selecao" value="#{golController.selecaoSelecionado}">
+                    <f:selectItems value="#{golController.listaSelecao}" var="selecaoG" itemLabel="#{selecaoG.pais.nome}" 
+                                   itemValue="#{selecaoG.ID}" />
+                </p:selectOneMenu><br/>
+                <p:outputLabel for="jogo" value="Jogo: "/>
+                <p:selectOneMenu id="jogo" value="#{golController.jogoSelecionado}">
+                    <f:selectItems value="#{golController.listaJogo}" var="jogoG" itemLabel="#{jogoG.data}" 
+                                   itemValue="#{jogoG.ID}" />
+                </p:selectOneMenu><br/>
+                
+                <p:commandButton value="Cadastrar" action="#{golController.cadastrarGol()}" update="@all" />
+            </h:form>
+        </p:fieldset>
+
+        <br/>
+        <p:fieldset legend="Tabela" style="margin-bottom:20px">
+            <h:form>
+                <p:dataTable id="tabela" var="gol" value="#{golController.listaGol}" paginator="true" rows="10" >
+                    <p:column headerText="ID" sortBy="#{gol.id}">
+                        <h:outputText value="#{gol.id}"/>
+                    </p:column>
+                    <p:column headerText="Tempo" sortBy="#{gol.tempo}" >
+                        <h:outputText value="#{gol.foiContra}"/>
+                    </p:column>
+                    <p:column headerText="Jogador" sortBy="#{gol.jogador.nome}" >
+                        <h:outputText value="#{gol.jogador.nome}"/>
+                    </p:column>
+                    <p:column headerText="" >
+                        <p:commandButton  actionListener="#{golController.excluirGol(id)}" update="@all" value="Excluir"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:fieldset>
+
+
+    </h:body>
+</html>
+

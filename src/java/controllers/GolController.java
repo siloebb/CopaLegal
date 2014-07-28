@@ -6,21 +6,17 @@
 
 package controllers;
 
-import crud.CopaCRUD;
 import crud.GolCRUD;
 import crud.JogadorCRUD;
 import crud.JogoCRUD;
-import crud.PaisCRUD;
 import crud.SelecaoCRUD;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import model.Copa;
 import model.Gol;
 import model.Jogador;
 import model.Jogo;
-import model.Pais;
 import model.Selecao;
 
 /**
@@ -36,7 +32,7 @@ public class GolController {
     private Long jogoSelecionado;
     private List<Gol> listaGol;
     private Long jogadorSelecionado;
-    private Long selecaoSelecionado;
+    private Long selecaoSelecionada;
     
      public GolController() {
         this.gol = new Gol();
@@ -103,11 +99,11 @@ public class GolController {
     }
 
     public Long getSelecaoSelecionado() {
-        return selecaoSelecionado;
+        return selecaoSelecionada;
     }
 
-    public void setSelecaoSelecionado(Long selecaoSelecionado) {
-        this.selecaoSelecionado = selecaoSelecionado;
+    public void setSelecaoSelecionado(Long selecaoSelecionada) {
+        this.selecaoSelecionada = selecaoSelecionada;
     }
          
     
@@ -137,7 +133,7 @@ public class GolController {
        
     }
     
-    public void cadastrarCopa(){
+    public void cadastrarGol(){
         GolCRUD gcrud = new GolCRUD();
         JogadorCRUD jcrud = new JogadorCRUD();
         Jogador j = jcrud.ready(jogadorSelecionado);
@@ -146,12 +142,23 @@ public class GolController {
         Jogo jogo = jocrud.ready(jogoSelecionado);
         gol.setJogo(jogo);
         SelecaoCRUD scrud = new SelecaoCRUD();
-        Selecao s = scrud.ready(selecaoSelecionado);
+        Selecao s = scrud.ready(selecaoSelecionada);
         gol.setSelecao(s);
         gcrud.create(gol);
         FacesMessage message = new FacesMessage("Cadastrado com sucesso");
         FacesContext.getCurrentInstance().addMessage(null, message);
         listaGol = iniciarListaGol();
+    }
+    public void excluirGol(Long id) {
+        GolCRUD gcrud = new GolCRUD();
+        Gol ready = gcrud.ready(id);
+        try {
+            gcrud.delete(ready);
+            listaGol = iniciarListaGol();
+        } catch (Exception ex) {
+            FacesMessage message = new FacesMessage("Erro ao excluir! Verifique se o dado não está dependente!");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
     }
     
 }
