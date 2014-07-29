@@ -19,6 +19,5 @@
     <mapping class="model.Selecao"/>
     <mapping class="model.Escalacao"/>
     <mapping class="model.Substituicao"/>
-    
   </session-factory>
 </hibernate-configuration>

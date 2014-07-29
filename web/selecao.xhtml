@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Selecao</title>
+    </h:head>
+    <h:body>
+        <p:fieldset legend="Formulário" style="margin-bottom:20px">
+            <h:form>
+                <p:outputLabel for="ano" value="Ano de participação: "/>
+                <p:spinner id="ano" value="#{selecaoController.selecao.ano}" /><br/>
+                <p:outputLabel for="grupo" value="Grupo: "/>
+                <p:inputText id="grupo" value="#{selecaoController.selecao.grupo}" /><br/>
+                <p:outputLabel for="pais" value="País onde ocorreu: "/>
+                <p:selectOneMenu id="pais" value="#{selecaoController.paisSelecionado}">
+                    <f:selectItems value="#{selecaoController.listaPaises}" var="paisC" itemLabel="#{paisC.nome}" 
+                                   itemValue="#{paisC.id}" />
+                </p:selectOneMenu><br/>
+                <p:outputLabel for="posicao" value="Posição: "/>
+                <p:spinner id="posicao" value="#{selecaoController.selecao.posicao}" /><br/>
+                <p:outputLabel for="tecnico" value="Técnico: "/>
+                <p:selectOneMenu id="tecnico" value="#{selecaoController.tecnicoSelecionado}">
+                    <f:selectItems value="#{selecaoController.listaTecnico}" var="tecnicoC" itemLabel="#{tecnicoC.nome}" 
+                                   itemValue="#{tecnicoC.id}" />
+                </p:selectOneMenu><br/>
+                <p:outputLabel for="Copa" value="Copa de: "/>
+                <p:selectOneMenu id="Copa" value="#{selecaoController.copaSelecionada}">
+                    <f:selectItems value="#{selecaoController.listaCopa}" var="copaC" itemLabel="#{copaC.ano}" 
+                                   itemValue="#{copaC.ano}" />
+                </p:selectOneMenu><br/>
+                <p:outputLabel for="jogador" value="Jogadores: "/>
+                <p:selectManyMenu id="jogador" value="#{selecaoController.listaJogadorSelecionado1}">
+                    <f:selectItems value="#{selecaoController.listaJogadores}" var="jogador1" itemLabel="#{jogador1.nome}" itemValue="#{jogador1.ID}" />
+                </p:selectManyMenu>
+                <p:commandButton value="Cadastrar" action="#{selecaoController.cadastrarSelecao()}" update="@all" />
+            </h:form>
+        </p:fieldset>
+
+        <br/>
+        <p:fieldset legend="Tabela" style="margin-bottom:20px">
+            <h:form>
+                <p:dataTable id="tabela" var="selecao" value="#{selecaoController.listaSelecao}" paginator="true" rows="10" >
+                    <p:column headerText="Id" sortBy="#{selecao.ID}">
+                        <h:outputText value="#{selecao.ID}"/>
+                    </p:column>
+                    <p:column headerText="Ano" sortBy="#{selecao.ano}" >
+                        <h:outputText value="#{selecao.ano}"/>
+                    </p:column>
+                    <p:column headerText="Grupo" sortBy="#{selecao.grupo}">
+                        <h:outputText value="#{selecao.grupo}"/>
+                    </p:column>
+                    <p:column headerText="Ano da Copa" sortBy="#{selecao.copa.ano}">
+                        <h:outputText value="#{selecao.copa.ano}"/>
+                    </p:column>
+                    <p:column headerText="País" sortBy="#{selecao.pais.nome}">
+                        <h:outputText value="#{selecao.pais.nome}"/>
+                    </p:column>
+                    <p:column headerText="Posição" sortBy="#{selecao.posicao}">
+                        <h:outputText value="#{selecao.posicao}"/>
+                    </p:column>
+                    <p:column headerText="Técnico" sortBy="#{selecao.tecnico.nome}">
+                        <h:outputText value="#{selecao.tecnico.nome}"/>
+                    </p:column>
+                    
+                    <p:column headerText="" >
+                        <p:commandButton  actionListener="#{selecaoController.excluirSelecao(selecao.ID)}" update="@all" value="Excluir"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:fieldset>
+
+
+    </h:body>
+</html>
+

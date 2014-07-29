@@ -3,6 +3,7 @@ package crud;
 import interfaces.DAO;
 import java.util.List;
 import model.Copa;
+import model.Jogador;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -88,6 +89,21 @@ public class CopaCRUD implements DAO<Copa, Integer> {
         transacao.commit();
 
         sessao.close();
+    }
+
+    public Copa ready(Long ano) {
+        Copa resultado = null;
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+
+        Query consulta = sessao.createQuery("from Copa where ano = :id");
+        consulta.setLong("id", ano);
+
+        resultado = (Copa) consulta.uniqueResult();
+        transacao.commit();
+        sessao.close();
+        
+        return resultado;
     }
 
 }
