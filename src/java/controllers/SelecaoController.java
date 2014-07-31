@@ -104,7 +104,7 @@ public class SelecaoController {
         selecao.setPais(pais);
         System.out.println("passo3");
         CopaCRUD ccrud = new CopaCRUD();
-        Copa copa = ccrud.ready(copaSelecionada);
+        Copa copa = ccrud.readyByAno(copaSelecionada);
         selecao.setCopa(copa);
         System.out.println("passo4");
         ArrayList<Jogador> listaJogadores = new ArrayList<Jogador>();

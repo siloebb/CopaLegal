@@ -91,7 +91,7 @@ public class CopaCRUD implements DAO<Copa, Integer> {
         sessao.close();
     }
 
-    public Copa ready(Long ano) {
+    public Copa readyByAno(Long ano) {
         Copa resultado = null;
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();

@@ -2,12 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>País</title>
     </h:head>
     <h:body>
-        <p:fieldset legend="Formulário" style="margin-bottom:20px">
+        <p:fieldset legend="Formulário" style="margin-bottom:20px" >
             <h:form>
                 <p:outputLabel for="nome" value="Nome: "/>
                 <p:inputText id="nome" value="#{paisController.pais.nome}" /><br />
@@ -22,6 +23,13 @@
         <br/>
         <p:fieldset legend="Tabela" style="margin-bottom:20px">
             <h:form>
+                <p:commandButton value="Procurar por copa: " action="#{paisController.filtrarPaisPorCopa()}" update="@all" />
+                <p:selectOneMenu id="copaSelecter" value="#{paisController.copaSelecionada}">
+                    <f:selectItems value="#{paisController.listaCopas}" var="copaSelected" itemLabel="#{copaSelected.ano} - #{copaSelected.pais.nome}" 
+                                   itemValue="#{copaSelected.ano}" />
+                </p:selectOneMenu><br/>
+                
+                
                 <p:dataTable id="tabela" var="pais" value="#{paisController.listaPaises}" paginator="true" rows="10" >
                     <p:column headerText="Id" sortBy="#{pais.id}">
                         <h:outputText value="#{pais.id}"/>

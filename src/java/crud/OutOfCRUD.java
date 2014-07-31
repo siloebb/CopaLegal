@@ -45,10 +45,18 @@ public class OutOfCRUD {
             sessao = HibernateUtil.getSessionFactory().openSession();
             transacao = sessao.beginTransaction();
 
-            Query consulta = sessao.createQuery("from Pais as  pais where pais.copa.ano =:idCopa");
-            consulta.setInteger("idCopa", copa.getAno());
+            Query consulta = sessao.createQuery("from Copa as  copa where copa.ano =:anoCopa");
+            consulta.setInteger("anoCopa", copa.getAno());
            
-            resultado = (List<Pais>) consulta.list();
+            List<Copa> listaCopa = (List<Copa>) consulta.list();
+            
+            if(listaCopa != null){
+                resultado = new ArrayList<>();
+                for (Copa copa1 : listaCopa) {
+                    resultado.add(copa1.getPais());
+                }
+            }
+            
             transacao.commit();
             return resultado;     
     }

@@ -26,6 +26,7 @@
         <br/>
         <p:fieldset legend="Tabela" style="margin-bottom:20px">
             <h:form>
+                
                 <p:dataTable id="tabela" var="copa" value="#{copaController.listaCopas}" paginator="true" rows="10" >
                     <p:column headerText="Ano" sortBy="#{copa.ano}">
                         <h:outputText value="#{copa.ano}"/>

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.io.Serializable;
@@ -23,10 +22,10 @@ import javax.persistence.ManyToOne;
  * @author suka
  */
 @Entity
-public class Selecao implements Serializable{
-    
+public class Selecao implements Serializable {
+
     private static final long serialVersionUID = -5258232343212344645L;
-   
+
     @Id
     @GeneratedValue
     private Long ID;
@@ -40,7 +39,8 @@ public class Selecao implements Serializable{
     @ManyToOne
     private Copa copa;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="selecao_jogador", joinColumns={@JoinColumn(name="selecao_ID")})
+    @JoinTable(name = "selecao_jogador", joinColumns = {
+        @JoinColumn(name = "selecao_ID")})
     private List<Jogador> jogador;
 
     public Long getID() {
@@ -121,8 +121,6 @@ public class Selecao implements Serializable{
         return hash;
     }
 
-   
-
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -159,6 +157,4 @@ public class Selecao implements Serializable{
         return true;
     }
 
-    
-    
 }

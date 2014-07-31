@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Outras buscas</title>
+    </h:head>
+    <h:body>
+        <p:fieldset legend="17 - Listar países por copa" style="margin-bottom:20px">
+            <h:form>                
+                <p:outputLabel for="pais" value="Copa: "/>
+                <p:selectOneMenu id="pais" value="#{especialController.copaSelecionada}">
+                    <f:selectItems value="#{copaController.listaCopas}" var="copaC" itemLabel="#{copaC.ano}" 
+                                   itemValue="#{copaC.ano}" />
+                </p:selectOneMenu><br/>
+                <p:commandButton value="Cadastrar" action="#{copaController.cadastrarCopa()}" update="@all" />
+            </h:form>
+        </p:fieldset>
+    </h:body>
+</html>
+
