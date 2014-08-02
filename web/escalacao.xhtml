@@ -17,7 +17,7 @@ and open the template in the editor.
             <h:form>
                 <p:outputLabel for="selecao" value="Seleção: "/>
                 <p:selectOneMenu id="selecao" value="#{escalacaoController.selecaoSelecionada}">
-                    <f:selectItems value="#{escalacaoController.listaSelecoes}" var="selecaoC" itemLabel="#{selecaoC.pais}" 
+                    <f:selectItems value="#{escalacaoController.listaSelecoes}" var="selecaoC" itemLabel="#{selecaoC.pais.nome}" 
                                    itemValue="#{selecaoC.ID}" />
                 </p:selectOneMenu><br/>
                 
@@ -31,21 +31,7 @@ and open the template in the editor.
         </p:fieldset>
 
         <br/>
-        <p:fieldset legend="Tabela" style="margin-bottom:20px">
-            <h:form>
-                <p:dataTable id="tabela" var="escalacao" value="#{escalacaoController.listaEscalacoes}" paginator="true" rows="10" >
-                    <p:column headerText="Id" sortBy="#{escalacao.ID}">
-                        <h:outputText value="#{escalacao.ID}"/>
-                    </p:column>
-                    
-                    
-                    <p:column headerText="" >
-                        <p:commandButton  actionListener="#{escalacaoController.excluirEscalacao(escalacao.ID)}" update="@all" value="Excluir"/>
-                    </p:column>
-                </p:dataTable>
-            </h:form>
-        </p:fieldset>
-
+        
 
     </h:body>
 </html>

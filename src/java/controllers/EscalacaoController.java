@@ -90,7 +90,7 @@ public class EscalacaoController {
             Jogador ready = jcrud.ready(get);
             listaJogadores.add(ready);
         }
-        escalacao.setArrayJogadores(listaJogadores);
+        escalacao.setJogadores(listaJogadores);
         System.out.println("passo3");
         
         EscalacaoCRUD ecrud = new EscalacaoCRUD();

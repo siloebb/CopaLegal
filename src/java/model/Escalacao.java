@@ -3,45 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author suka
  */
 @Entity
-public class Escalacao implements Serializable{
-    
-    private static final long serialVersionUID = 7799705139670891224L;
-    
+public class Escalacao implements Serializable {
+
+    private static final long serialVersionUID = -5828902511709270152L;
+
+
     @Id
     @GeneratedValue
     private Long ID;
-    
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "escalacao_jogador", joinColumns = {
+        @JoinColumn(name = "escalação_ID")})
     private ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
+
+    @ManyToOne
     private Selecao selecao = new Selecao();
-    
-    public void setArrayJogadores(ArrayList j){
-        this.jogadores = j;
-          
-    }
-    public ArrayList<Jogador> getArrayJogadores(){
-        return this.jogadores;
-    }
-    public void setSelecao(Selecao selecao){
-        this.selecao = selecao;
-    }
-    public Selecao getSelecao(){
-        return this.selecao;
-    }
 
     public Long getID() {
         return ID;
@@ -51,15 +46,31 @@ public class Escalacao implements Serializable{
         this.ID = ID;
     }
 
+    public ArrayList<Jogador> getJogadores() {
+        return jogadores;
+    }
+
+    public void setJogadores(ArrayList<Jogador> jogadores) {
+        this.jogadores = jogadores;
+    }
+
+    public Selecao getSelecao() {
+        return selecao;
+    }
+
+    public void setSelecao(Selecao selecao) {
+        this.selecao = selecao;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.ID);
-        hash = 47 * hash + Objects.hashCode(this.jogadores);
-        hash = 47 * hash + Objects.hashCode(this.selecao);
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.ID);
+        hash = 67 * hash + Objects.hashCode(this.jogadores);
+        hash = 67 * hash + Objects.hashCode(this.selecao);
         return hash;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -72,22 +83,17 @@ public class Escalacao implements Serializable{
         if (!Objects.equals(this.ID, other.ID)) {
             return false;
         }
+        if (!Objects.equals(this.jogadores, other.jogadores)) {
+            return false;
+        }
         if (!Objects.equals(this.selecao, other.selecao)) {
             return false;
         }
-        
         return true;
     }
-    public void addJogador(Jogador jogador){
-        if(jogadores.size() < 11){
-            jogadores.add(jogador);
-        }
-        
-    }
-    public void removeJogador(Jogador jogador){
-        if(!jogadores.isEmpty()){
-            jogadores.remove(jogador);
-        }
-    }
     
+
+
+    
+
 }

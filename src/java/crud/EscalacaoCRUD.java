@@ -38,7 +38,7 @@ public class EscalacaoCRUD implements DAO<Escalacao,Long>{
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
 
-        Query consulta = sessao.createQuery("from Escalacao where id = :id");
+        Query consulta = sessao.createQuery("from Escalacao where ID = :id");
         consulta.setLong("id", id);
 
         resultado = (Escalacao) consulta.uniqueResult();
