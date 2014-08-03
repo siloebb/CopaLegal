@@ -9,29 +9,35 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-     <h:head>
-        <title>Escalacao</title>
+    <h:head>
+        <title>Escalação</title>
     </h:head>
     <h:body>
+        <h:form>
+            
+            <p:commandButton value="NASA" action="#{escalacaoController.nada()}" update="@all" />
+
+        </h:form>
+
         <p:fieldset legend="Formulário" style="margin-bottom:20px">
             <h:form>
                 <p:outputLabel for="selecao" value="Seleção: "/>
                 <p:selectOneMenu id="selecao" value="#{escalacaoController.selecaoSelecionada}">
-                    <f:selectItems value="#{escalacaoController.listaSelecoes}" var="selecaoC" itemLabel="#{selecaoC.pais.nome}" 
+                    <f:selectItems value="#{escalacaoController.listaSelecoes}" var="selecaoC" itemLabel="#{selecaoC.ID} -#{selecaoC.pais.nome}" 
                                    itemValue="#{selecaoC.ID}" />
                 </p:selectOneMenu><br/>
-                
+
                 <p:outputLabel for="jogador" value="Jogadores: "/>
                 <p:selectManyMenu id="jogador" value="#{escalacaoController.listaJogadorSelecionado1}">
                     <f:selectItems value="#{escalacaoController.listaJogadores}" var="jogador1" itemLabel="#{jogador1.nome}" itemValue="#{jogador1.ID}" />
                 </p:selectManyMenu>
                 <p:commandButton value="Cadastrar" action="#{escalacaoController.cadastrarEscalacao()}" update="@all" />
-          
+
             </h:form>
         </p:fieldset>
 
         <br/>
-        
+
 
     </h:body>
 </html>

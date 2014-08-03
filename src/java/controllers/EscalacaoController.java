@@ -8,7 +8,6 @@ package controllers;
 
 import crud.EscalacaoCRUD;
 import crud.JogadorCRUD;
-import crud.PaisCRUD;
 import crud.SelecaoCRUD;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import model.Escalacao;
 import model.Jogador;
-import model.Pais;
 import model.Selecao;
 
 /**
@@ -42,16 +40,17 @@ public class EscalacaoController {
         listaJogadores = iniciarListaJogadores();
         this.escalacao = new Escalacao();
         listaEscalacoes = iniciarListaEscalacoes();
+        
     }
 
     public Long getSelecaoSelecionada() {
         return selecaoSelecionada;
     }
 
-    public void setPaisSelecionado(Long selecaoSelecionada) {
+    public void setSelecaoSelecionada(Long selecaoSelecionada) {
         this.selecaoSelecionada = selecaoSelecionada;
     }
-    
+
     public Escalacao getEscalacao() {
         return escalacao;
     }
@@ -76,21 +75,30 @@ public class EscalacaoController {
         this.listaEscalacoes = listaEscalacoes;
     }
     
+    public void nada(){
+        FacesMessage message1 = new FacesMessage("Faz alguma coisa pela'mor de nós");
+        FacesContext.getCurrentInstance().addMessage(null, message1);
+        System.out.println("PASSANDO");
+    }
+    
     public void cadastrarEscalacao() {
+        FacesMessage message1 = new FacesMessage("Faz alguma coisa pela'mor de nós");
+        FacesContext.getCurrentInstance().addMessage(null, message1);
+        
         System.out.println("passo1");
         SelecaoCRUD scrud = new SelecaoCRUD();
         Selecao selecao = scrud.ready(selecaoSelecionada);
         escalacao.setSelecao(selecao);      
         System.out.println("passo2");
-        ArrayList<Jogador> listaJogadores = new ArrayList<Jogador>();
+        ArrayList<Jogador> listaJogadoresMarotos = new ArrayList<Jogador>();
         JogadorCRUD jcrud = new JogadorCRUD();
         for(int i=0;i<listaJogadorSelecionado1.size();i++){
-            Long get =Long.parseLong( "" + listaJogadorSelecionado1.get(i));
+            Long get = Long.parseLong( "" + listaJogadorSelecionado1.get(i));
             
             Jogador ready = jcrud.ready(get);
-            listaJogadores.add(ready);
+            listaJogadoresMarotos.add(ready);
         }
-        escalacao.setJogadores(listaJogadores);
+        escalacao.setJogadores(listaJogadoresMarotos);
         System.out.println("passo3");
         
         EscalacaoCRUD ecrud = new EscalacaoCRUD();

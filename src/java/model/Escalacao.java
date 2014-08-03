@@ -6,7 +6,7 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import org.hibernate.annotations.IndexColumn;
 
 /**
  *
@@ -24,19 +25,20 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Escalacao implements Serializable {
 
-    private static final long serialVersionUID = -5828902511709270152L;
-
+    private static final long serialVersionUID = -38289025170925152L;
 
     @Id
     @GeneratedValue
     private Long ID;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "escalacao_jogador", joinColumns = {
-        @JoinColumn(name = "escalação_ID")})
-    private ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
+        @JoinColumn(name = "escalacao_ID")})
+    @IndexColumn(name = "jogadores_order")
+    private List<Jogador> jogadores;
 
     @ManyToOne
-    private Selecao selecao = new Selecao();
+    private Selecao selecao;
 
     public Long getID() {
         return ID;
@@ -46,11 +48,11 @@ public class Escalacao implements Serializable {
         this.ID = ID;
     }
 
-    public ArrayList<Jogador> getJogadores() {
+    public List<Jogador> getJogadores() {
         return jogadores;
     }
 
-    public void setJogadores(ArrayList<Jogador> jogadores) {
+    public void setJogadores(List<Jogador> jogadores) {
         this.jogadores = jogadores;
     }
 
@@ -64,10 +66,10 @@ public class Escalacao implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + Objects.hashCode(this.ID);
-        hash = 67 * hash + Objects.hashCode(this.jogadores);
-        hash = 67 * hash + Objects.hashCode(this.selecao);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.ID);
+        hash = 97 * hash + Objects.hashCode(this.jogadores);
+        hash = 97 * hash + Objects.hashCode(this.selecao);
         return hash;
     }
 
@@ -92,8 +94,4 @@ public class Escalacao implements Serializable {
         return true;
     }
     
-
-
-    
-
 }

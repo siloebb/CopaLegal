@@ -67,6 +67,8 @@ public class Jogador implements Serializable {
     public void setPosicao(Posicao posicao) {
         this.posicao = posicao;
     }
+    
+    
 
     @Override
     public int hashCode() {
@@ -108,6 +110,10 @@ public class Jogador implements Serializable {
 
     public void setCamisa(int camisa) {
         this.camisa = camisa;
+    }
+
+    public int getCamisa() {
+        return camisa;
     }
 
 }
