@@ -90,6 +90,14 @@ public class PaisController {
         CopaCRUD ccrud = new CopaCRUD();
         return ccrud.getList();
     }
+    
+    public int getQuantidadeDeJogosEmCopaDoMundo(Long idPais){
+        OutOfCRUD oocrud = new OutOfCRUD();
+        PaisCRUD pcrud = new PaisCRUD();
+        Pais pais = pcrud.ready(idPais);
+        int quantidadeDeJogos = oocrud.quantidadeDeJogos(pais);
+        return quantidadeDeJogos;
+    }
 
     public void excluirPais(Long id) {
         PaisCRUD pcrud = new PaisCRUD();

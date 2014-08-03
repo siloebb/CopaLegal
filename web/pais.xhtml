@@ -43,6 +43,9 @@
                     <p:column headerText="Continente" sortBy="#{pais.continente}">
                         <h:outputText value="#{pais.continente}"/>
                     </p:column>
+                    <p:column headerText="Qtd de Jogos em copa do mundo" sortBy="#{pais.continente}">
+                        <h:outputText value="#{paisController.getQuantidadeDeJogosEmCopaDoMundo(pais.id)}"/>
+                    </p:column>
                     <p:column headerText="" >
                         <p:commandButton  actionListener="#{paisController.excluirPais(pais.id)}" update="@all" value="Excluir"/>
                     </p:column>
