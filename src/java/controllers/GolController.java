@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controllers;
 
 import crud.GolCRUD;
 import crud.JogadorCRUD;
 import crud.JogoCRUD;
+import crud.OutOfCRUD;
 import crud.SelecaoCRUD;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -25,23 +25,33 @@ import model.Selecao;
  */
 @ManagedBean
 public class GolController {
-    Gol gol;
-    List<Jogador> jogadores;
-    List<Selecao> listaSelecao;
-    List<Jogo> listaJogo;
+
+    private Gol gol;
+    private List<Jogador> jogadores;
+    private List<Selecao> listaSelecao;
+    private List<Jogo> listaJogo;
     private Long jogoSelecionado;
     private List<Gol> listaGol;
     private Long jogadorSelecionado;
     private Long selecaoSelecionada;
-    
-     public GolController() {
+    private Long jogoFiltroSelecionado;
+
+    public GolController() {
         this.gol = new Gol();
         jogadores = iniciarListaJogadores();
         listaSelecao = iniciarListaSelecao();
         listaJogo = iniciarListaJogo();
-        
+
     }
 
+    public Long getJogoFiltroSelecionado() {
+        return jogoFiltroSelecionado;
+    }
+
+    public void setJogoFiltroSelecionado(Long jogoFiltroSelecionado) {
+        this.jogoFiltroSelecionado = jogoFiltroSelecionado;
+    }
+    
     public Gol getGol() {
         return gol;
     }
@@ -105,14 +115,12 @@ public class GolController {
     public void setSelecaoSelecionado(Long selecaoSelecionada) {
         this.selecaoSelecionada = selecaoSelecionada;
     }
-         
-    
+
     private List<Gol> iniciarListaGol() {
         GolCRUD gcrud = new GolCRUD();
         List<Gol> list = gcrud.getList();
         return list;
     }
-     
 
     private List<Jogador> iniciarListaJogadores() {
         JogadorCRUD jcrud = new JogadorCRUD();
@@ -130,10 +138,10 @@ public class GolController {
         JogoCRUD jocrud = new JogoCRUD();
         List<Jogo> list = jocrud.getList();
         return list;
-       
+
     }
-    
-    public void cadastrarGol(){
+
+    public void cadastrarGol() {
         GolCRUD gcrud = new GolCRUD();
         JogadorCRUD jcrud = new JogadorCRUD();
         Jogador j = jcrud.ready(jogadorSelecionado);
@@ -149,6 +157,7 @@ public class GolController {
         FacesContext.getCurrentInstance().addMessage(null, message);
         listaGol = iniciarListaGol();
     }
+
     public void excluirGol(Long id) {
         GolCRUD gcrud = new GolCRUD();
         Gol ready = gcrud.ready(id);
@@ -160,5 +169,14 @@ public class GolController {
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
     }
-    
+
+    public void filtrarPaisPorJogo() {
+        JogoCRUD jcrud = new JogoCRUD();
+        Jogo jogo = jcrud.ready(jogoFiltroSelecionado);
+        
+        OutOfCRUD oocrud = new OutOfCRUD();
+        List<Gol> listarGolsPartida = oocrud.listarGolsPartida(jogo);
+        listaGol = listarGolsPartida;
+    }
+
 }

@@ -37,6 +37,12 @@
         <br/>
         <p:fieldset legend="Tabela" style="margin-bottom:20px">
             <h:form>
+                <p:commandButton value="Procurar por Jogo: " action="#{golController.filtrarPaisPorJogo()}" update="@all" />
+                <p:selectOneMenu id="copaSelecter" value="#{golController.jogoFiltroSelecionado}">
+                    <f:selectItems value="#{golController.listaJogo}" var="jogoF" itemLabel="ano:#{jogoF.ano} data:#{jogoF.data} Horário:#{jogoF.horario} - #{jogoF.s1.pais.nome} vs #{jogoF.s2.pais.nome} em #{jogoF.local}" 
+                                   itemValue="#{jogoF.ID}" />
+                </p:selectOneMenu><br/>
+                
                 <p:dataTable id="tabela" var="gol" value="#{golController.listaGol}" paginator="true" rows="10" >
                     <p:column headerText="ID" sortBy="#{gol.id}">
                         <h:outputText value="#{gol.id}"/>
