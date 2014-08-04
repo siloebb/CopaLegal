@@ -25,8 +25,8 @@ import model.Selecao;
 @ManagedBean
 public class EscalacaoController {
   
-    Escalacao escalacao;
-    List<Escalacao> listaEscalacoes;
+    private Escalacao escalacao;
+    private List<Escalacao> listaEscalacoes;
     
     private List<Selecao> listaSelecoes;
     private Long selecaoSelecionada;
