@@ -8,6 +8,7 @@ package controllers;
 
 import crud.CopaCRUD;
 import crud.JogadorCRUD;
+import crud.OutOfCRUD;
 import crud.PaisCRUD;
 import crud.SelecaoCRUD;
 import crud.TecnicoCRUD;
@@ -34,6 +35,7 @@ public class SelecaoController {
     private List<Tecnico> listaTecnico;
     private Long tecnicoSelecionado;
     private Long copaSelecionada;
+    private Long copaFiltroSelecionada;
     private List<Copa> listaCopa;
     private List<Jogador> listaJogadores;
     private List<Long> listaJogadorSelecionado1;
@@ -190,6 +192,14 @@ public class SelecaoController {
         List<Selecao> list = sCrud.getList();
         return list;
     }
+    
+    public void listarPorCopa(){
+        OutOfCRUD oocrud = new OutOfCRUD();
+        CopaCRUD ccrud = new CopaCRUD();
+        Copa readyByAno = ccrud.readyByAno(copaFiltroSelecionada);
+        List<Selecao> rankingSelecao = oocrud.getRankingSelecao(readyByAno);        
+        listaSelecao = rankingSelecao;
+    }
 
     public List<Pais> getListaPaises() {
         return listaPaises;
@@ -206,4 +216,13 @@ public class SelecaoController {
     public void setSelecao(Selecao selecao) {
         this.selecao = selecao;
     }
+
+    public Long getCopaFiltroSelecionada() {
+        return copaFiltroSelecionada;
+    }
+
+    public void setCopaFiltroSelecionada(Long copaFiltroSelecionada) {
+        this.copaFiltroSelecionada = copaFiltroSelecionada;
+    }
+    
 }
