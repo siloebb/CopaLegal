@@ -34,6 +34,11 @@ and open the template in the editor.
         <br/>
         <p:fieldset legend="Tabela" style="margin-bottom:20px">
             <h:form>
+                <p:commandButton value="Procurar por Seleção: " action="#{jogadorController.listaJogadores}" update="@all" />
+                <p:selectOneMenu id="Copa" value="#{jogadorController.selecaoSelecionada}">
+                    <f:selectItems value="#{jogadorController.listaSelecao}" var="selecaoC" itemLabel="#{selecaoC.ano}" 
+                                   itemValue="#{selecaoC.ano}" />
+                </p:selectOneMenu><br/>
                 <p:dataTable id="tabela" var="jogador" value="#{jogadorController.listaJogadores}" paginator="true" rows="10" >
                     <p:column headerText="Id" sortBy="#{jogador.ID}">
                         <h:outputText value="#{jogador.ID}"/>
