@@ -25,8 +25,8 @@ import model.Selecao;
 @ManagedBean
 public class EscalacaoController {
   
-    Escalacao escalacao;
-    List<Escalacao> listaEscalacoes;
+    private Escalacao escalacao;
+    private List<Escalacao> listaEscalacoes;
     
     private List<Selecao> listaSelecoes;
     private Long selecaoSelecionada;
@@ -146,6 +146,16 @@ public class EscalacaoController {
             FacesMessage message = new FacesMessage("Erro ao excluir! Verifique se o dado não está dependente!");
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
+    }
+    
+    public String getJogadoreFormatados(Escalacao escalacao){
+        String s ="";
+        
+        for (Jogador j : escalacao.getJogadores()) {
+            s += j.getNome()+",";
+        }
+        
+        return s;
     }
     
     public List<Selecao> getListaSelecoes() {

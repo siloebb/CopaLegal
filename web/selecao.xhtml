@@ -14,7 +14,7 @@
                 <p:spinner id="ano" value="#{selecaoController.selecao.ano}" /><br/>
                 <p:outputLabel for="grupo" value="Grupo: "/>
                 <p:inputText id="grupo" value="#{selecaoController.selecao.grupo}" /><br/>
-                <p:outputLabel for="pais" value="País onde ocorreu: "/>
+                <p:outputLabel for="pais" value="País da seleção: "/>
                 <p:selectOneMenu id="pais" value="#{selecaoController.paisSelecionado}">
                     <f:selectItems value="#{selecaoController.listaPaises}" var="paisC" itemLabel="#{paisC.nome}" 
                                    itemValue="#{paisC.id}" />
@@ -42,6 +42,11 @@
         <br/>
         <p:fieldset legend="Tabela" style="margin-bottom:20px">
             <h:form>
+                <p:commandButton value="Procurar por copa: " action="#{selecaoController.listarPorCopa()}" update="@all" />
+                <p:selectOneMenu id="Copa" value="#{selecaoController.copaFiltroSelecionada}">
+                    <f:selectItems value="#{selecaoController.listaCopa}" var="copaC" itemLabel="#{copaC.ano}" 
+                                   itemValue="#{copaC.ano}" />
+                </p:selectOneMenu><br/>
                 <p:dataTable id="tabela" var="selecao" value="#{selecaoController.listaSelecao}" paginator="true" rows="10" >
                     <p:column headerText="Id" sortBy="#{selecao.ID}">
                         <h:outputText value="#{selecao.ID}"/>
@@ -52,7 +57,7 @@
                     <p:column headerText="Grupo" sortBy="#{selecao.grupo}">
                         <h:outputText value="#{selecao.grupo}"/>
                     </p:column>
-                    <p:column headerText="Ano da Copa" sortBy="#{selecao.copa.ano}">
+                    <p:column headerText="Copa de:" sortBy="#{selecao.copa.ano}">
                         <h:outputText value="#{selecao.copa.ano}"/>
                     </p:column>
                     <p:column headerText="País" sortBy="#{selecao.pais.nome}">

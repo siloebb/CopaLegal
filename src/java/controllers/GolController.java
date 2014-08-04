@@ -178,5 +178,12 @@ public class GolController {
         List<Gol> listarGolsPartida = oocrud.listarGolsPartida(jogo);
         listaGol = listarGolsPartida;
     }
+    
+    public void golMaisRapido() {        
+        OutOfCRUD oocrud = new OutOfCRUD();
+        Gol golRelampago = oocrud.golRelampago();
+        listaGol.clear();
+        listaGol.add(gol);
+    }
 
 }
