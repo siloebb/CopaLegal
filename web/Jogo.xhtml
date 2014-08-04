@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Jogo</title>
+    </h:head>
+    <h:body>
+         <p:fieldset legend="Formulário" style="margin-bottom:20px">
+            <h:form>
+                <p:outputLabel for="ano" value="Ano que aconteceu: "/>
+                <p:inputText id="ano" value="#{jogoController.jogo.ano}" /><br/>
+                <p:outputLabel for="data" value="Data que ocorreu: "/>
+                <p:inputText id="data" value="#{jogoController.jogo.data}" /><br/>
+                <p:outputLabel for="local" value="Local: "/>
+                <p:inputText id="local" value="#{jogoController.jogo.local}" /><br/>
+                <p:outputLabel for="horario" value="Horário que ocorreu: "/>
+                <p:inputText id="horario" value="#{jogoController.jogo.horario}" /><br/>
+               <p:outputLabel for="selecao1" value="Seleção A: "/>
+               <p:selectOneMenu id="selecao1" value="#{jogoController.selecao1Selecionada}">
+                   <f:selectItems value="#{jogoController.listaSelecoes}" var="selecaoC" itemLabel="#{selecaoC.pais.nome}" 
+                                  itemValue="#{selecaoC.ID}" />
+                </p:selectOneMenu><br/>
+                <p:outputLabel for="selecao2" value="Seleção B: "/>
+                <p:selectOneMenu id="selecao2" value="#{jogoController.selecao2Selecionada}">
+                    <f:selectItems value="#{jogoController.listaSelecoes}" var="selecaoD" itemLabel="#{selecaoD.pais.nome}" 
+                                   itemValue="#{selecaoD.ID}" />
+                </p:selectOneMenu><br/>
+                <p:commandButton value="Cadastrar" action="#{jogoController.cadastrarJogo()}" update="@all" />
+            </h:form>
+        </p:fieldset>
+
+        <br/>
+        <p:fieldset legend="Tabela" style="margin-bottom:20px">
+            <h:form>
+                
+                <p:dataTable id="tabela" var="jogo" value="#{jogoController.listaJogo}" paginator="true" rows="10" >
+                    <p:column headerText="Ano" sortBy="#{jogo.ano}">
+                        <h:outputText value="#{jogo.ano}"/>
+                    </p:column>
+                    <p:column headerText="Data" sortBy="#{jogo.data}" >
+                        <h:outputText value="#{jogo.data}"/>
+                    </p:column>
+                    <p:column headerText="Local" sortBy="#{jogo.local}" >
+                        <h:outputText value="#{jogo.local}"/>
+                    </p:column>
+                    <p:column headerText="Horário" sortBy="#{jogo.horario}" >
+                        <h:outputText value="#{jogo.horario}"/>
+                    </p:column>
+                    <p:column headerText="Seleção A" >
+                        <h:outputText value="#{jogo.s1.pais.nome}"/>
+                    </p:column>
+                    <p:column headerText="Seleção B"  >
+                        <h:outputText value="#{jogo.s2.pais.nome}"/>
+                    </p:column>
+                    <p:column headerText="" >
+                        <p:commandButton  actionListener="#{jogoController.excluir(jogo.ID)}" update="@all" value="Excluir"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:fieldset>
+    </h:body>
+</html>
+
