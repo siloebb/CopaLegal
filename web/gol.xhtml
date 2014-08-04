@@ -37,6 +37,7 @@
         <br/>
         <p:fieldset legend="Tabela" style="margin-bottom:20px">
             <h:form>
+                <p:commandButton value="Mostrar Gol mais rápido da história" action="#{golController.golMaisRapido()}" update="@all" /><br/>
                 <p:commandButton value="Procurar por Jogo: " action="#{golController.filtrarPaisPorJogo()}" update="@all" />
                 <p:selectOneMenu id="copaSelecter" value="#{golController.jogoFiltroSelecionado}">
                     <f:selectItems value="#{golController.listaJogo}" var="jogoF" itemLabel="ano:#{jogoF.ano} data:#{jogoF.data} Horário:#{jogoF.horario} - #{jogoF.s1.pais.nome} vs #{jogoF.s2.pais.nome} em #{jogoF.local}" 
