@@ -51,7 +51,7 @@ public class SelecaoController {
         listaJogadorSelecionado1 = new ArrayList<Long>();
         
     }
-
+    
     public Long getPaisSelecionado() {
         return paisSelecionado;
     }
@@ -224,5 +224,11 @@ public class SelecaoController {
     public void setCopaFiltroSelecionada(Long copaFiltroSelecionada) {
         this.copaFiltroSelecionada = copaFiltroSelecionada;
     }
-    
+    public int quantidadeSelacaoCopa(Long idSelecao){
+        SelecaoCRUD scrud = new SelecaoCRUD();
+        Selecao ready = scrud.ready(idSelecao);
+        OutOfCRUD oocrud = new OutOfCRUD();
+        return oocrud.qtdDeParticipacoesEmCopa(ready);
+        
+    }
 }

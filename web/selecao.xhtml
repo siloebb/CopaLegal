@@ -69,7 +69,9 @@
                     <p:column headerText="Técnico" sortBy="#{selecao.tecnico.nome}">
                         <h:outputText value="#{selecao.tecnico.nome}"/>
                     </p:column>
-                    
+                    <p:column headerText="Nº de participações" >
+                        <h:outputText value="#{selecaoController.quantidadeSelacaoCopa(selecao.ID)}"/>
+                    </p:column>
                     <p:column headerText="" >
                         <p:commandButton  actionListener="#{selecaoController.excluirSelecao(selecao.ID)}" update="@all" value="Excluir"/>
                     </p:column>
