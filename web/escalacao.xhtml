@@ -13,13 +13,13 @@ and open the template in the editor.
         <title>Escalação</title>
     </h:head>
     <h:body>
-       
+
 
         <p:fieldset legend="Formulário" style="margin-bottom:20px">
-            
-          
-        
-            
+
+
+
+
             <h:form>
                 <p:outputLabel for="selecao" value="Seleção: "/>
                 <p:selectOneMenu id="selecao" value="#{escalacaoController.selecaoSelecionada}">
@@ -35,30 +35,34 @@ and open the template in the editor.
 
             </h:form>
         </p:fieldset>
-            
+
         <p:fieldset legend="Tabela" style="margin-bottom:20px">
             <h:form>
                 <p:dataTable id="tabela" var="escalacao" value="#{escalacaoController.listaEscalacoes}" paginator="true" rows="10" >
                     <p:column headerText="Id" sortBy="#{escalacao.ID}">
                         <h:outputText value="#{escalacao.ID}"/>
                     </p:column>
-                    
-                    <p:column> headerText="País" sortBy= "#{escalacao.selecao.pais.nome}">
+
+                    <p:column headerText="País" sortBy= "#{escalacao.selecao.pais.nome}">
                         <h:outputText value="#{escalacao.selecao.pais.nome}"/>
                     </p:column>
-                    
-                 <p:column headerText="Ano" sortBy="#{escalacao.selecao.ano}" >
+
+                    <p:column headerText="Ano" sortBy="#{escalacao.selecao.ano}" >
                         <h:outputText value="#{escalacao.selecao.ano}"/>
                     </p:column>
                     
-                     <p:column headerText="" >
-                         <p:commandButton  actionListener="#{escalacaoController.excluirEscalacao(escalacao.ID)}" update="@all" value="Excluir"/>
+                    <p:column headerText="Jogadores" >
+                        <h:outputText value="#{escalacaoController.getJogadoreFormatados(escalacao)}"/>
                     </p:column>
-                   
+
+                    <p:column headerText="" >
+                        <p:commandButton  actionListener="#{escalacaoController.excluirEscalacao(escalacao.ID)}" update="@all" value="Excluir"/>
+                    </p:column>
+
                 </p:dataTable>
             </h:form>
         </p:fieldset>
-        
+
         <br/>
 
 

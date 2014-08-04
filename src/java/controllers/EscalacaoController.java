@@ -148,6 +148,16 @@ public class EscalacaoController {
         }
     }
     
+    public String getJogadoreFormatados(Escalacao escalacao){
+        String s ="";
+        
+        for (Jogador j : escalacao.getJogadores()) {
+            s += j.getNome()+",";
+        }
+        
+        return s;
+    }
+    
     public List<Selecao> getListaSelecoes() {
         return listaSelecoes;
     }
