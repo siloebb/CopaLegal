@@ -13,77 +13,82 @@ and open the template in the editor.
         <title>Substituição</title>
     </h:head>
     <h:body>
-       
+
 
         <p:fieldset legend="Formulário" style="margin-bottom:20px">
-            
-          
-        <p:fieldset legend="Seleção" style="margin-bottom:20px">
-            
-            
+
+
+
+
+
             <h:form>
                 <p:outputLabel for="selecao" value="Seleção: "/>
                 <p:selectOneMenu id="selecao" value="#{substituicaoController.selecaoSelecionada}">
                     <f:selectItems value="#{substituicaoController.listaSelecoes}" var="selecaoC" itemLabel="#{selecaoC.ID} -#{selecaoC.pais.nome}" 
                                    itemValue="#{selecaoC.ID}" />
                 </p:selectOneMenu><br/>
-                        
+
                 <p:outputLabel for="jogo" value="Jogo: "/> 
                 <p:selectOneMenu id="jogo" value="#{substituicaoController.jogoSelecionado}">
-                    <f:selectItems value="#{substituicaoController.listaJogos}" var="jogoC" itemLabel="#{jogo.ID} -#{jogoC.data} " 
-                                   itemValue="#{jogC.ID}" />
+                    <f:selectItems value="#{substituicaoController.listaJogos}" var="jogoC" itemLabel="#{jogoC.ID} -#{jogoC.data} " 
+                                   itemValue="#{jogoC.ID}" />
                 </p:selectOneMenu><br/>
-                
-                
-            <p:outputLabel for="jogador" value="jogador que Sai: "/> 
-            <p:selectOneMenu id="jogador" value="#{substituicaoController.jogadorSelecionadoSai}">
-                <f:selectItems value="#{substituicaoController.listaJogadores}" var="jogadorC" itemLabel="#{jogador.ID} -#{jogadorC.nome}" 
+
+
+                <p:outputLabel for="jogador" value="jogador que Sai: "/> 
+                <p:selectOneMenu id="jogador" value="#{substituicaoController.jogadorSelecionadoSai}">
+                    <f:selectItems value="#{substituicaoController.listaJogadores}" var="jogadorC" itemLabel="#{jogador.ID} -#{jogadorC.nome}" 
                                    itemValue="#{jogadorC.ID}" />
                 </p:selectOneMenu><br/>
-                
-             <p:outputLabel for="jogador1" value="jogador que Entra: "/>  
-              <p:selectOneMenu id="jogador1" value="#{substituicaoController.jogadorSelecionadoEntra}">
-                <f:selectItems value="#{substituicaoController.listaJogadores}" var="jogadorD" itemLabel="#{jogador.ID} -#{jogadorD.nome}" 
+
+                <p:outputLabel for="jogador1" value="jogador que Entra: "/>  
+                <p:selectOneMenu id="jogador1" value="#{substituicaoController.jogadorSelecionadoEntra}">
+                    <f:selectItems value="#{substituicaoController.listaJogadores}" var="jogadorD" itemLabel="#{jogador.ID} -#{jogadorD.nome}" 
                                    itemValue="#{jogadorD.ID}" />
                 </p:selectOneMenu><br/>
-                
+
                 <p:outputLabel for="tempo" value="Tempo: "/>
                 <p:inputText id="tempo" value="#{substituicaoController.substituicao.tempo}" /><br/>
                 <p:commandButton value="Cadastrar" action="#{substituicaoController.cadastrarSubstituicao()}" update="@all" />
 
             </h:form>
-         </p:fieldset>       
-            
-            
-               
-            
-        </p:fieldset>
-      
-         <p:fieldset legend="Tabela" style="margin-bottom:20px">
+        </p:fieldset>       
+
+
+
+
+
+
+        <p:fieldset legend="Tabela" style="margin-bottom:20px">
             <h:form>
                 <p:dataTable id="tabela" var="substituicao" value="#{substituicaoController.listaSubstituicoes}" paginator="true" rows="10" >
                     <p:column headerText="Id" sortBy="#{substituicao.id}">
                         <h:outputText value="#{substituicao.id}"/>
                     </p:column>
-                    
+
                     <p:column headerText="Seleção" sortBy="#{substituicao.selecao.pais.nome}" >
                         <h:outputText value="#{substituicao.selecao.pais.nome}"/>
                     </p:column>
-                    
-                 <p:column headerText="Ano" sortBy="#{substituicao.selecao.ano}" >
+
+                    <p:column headerText="Ano" sortBy="#{substituicao.selecao.ano}" >
                         <h:outputText value="#{substituicao.selecao.ano}"/>
                     </p:column>
-                    
-                     <p:column headerText="" >
-                         <p:commandButton  actionListener="#{substituicaoController.excluirSubstituicao(substituicao.id)}" update="@all" value="Excluir"/>
+                    <p:column headerText="Jogador que Entra"  >
+                        <h:outputText value="#{substituicao.jogadorEntrou.nome}"/>
                     </p:column>
-                   
+                    <p:column headerText="Jogador que Sai"  >
+                        <h:outputText value="#{substituicao.jogadorSaiu.nome}"/>
+                    </p:column>
+                    <p:column headerText="" >
+                        <p:commandButton  actionListener="#{substituicaoController.excluirSubstituicao(substituicao.id)}" update="@all" value="Excluir"/>
+                    </p:column>
+
                 </p:dataTable>
             </h:form>
         </p:fieldset>
-        
-        
-        
+
+
+
         <br/>
 
 
